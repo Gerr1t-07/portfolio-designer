@@ -1,0 +1,210 @@
+@import url('https://fonts.bunny.net/css?family=playfair-display:400i,700i&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* ─── DESIGN TOKENS ───────────────────────────────────────────────── */
+@theme {
+  --color-bg: #252618;
+  --color-cream: #F2E6DF;
+  --color-gold: #A68F1F;
+  --color-gold-dark: #735C19;
+  --color-card: #344021;
+  --color-card-dim: rgba(52, 64, 33, 0.30);
+
+  --font-monument: 'Monument Extended', 'Bebas Neue', 'Arial Black', sans-serif;
+  --font-editorial: 'Playfair Display', 'Georgia', serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+/* ─── MONUMENT EXTENDED (self-hosted CDN fallback) ───────────────── */
+@font-face {
+  font-family: 'Monument Extended';
+  src: url('https://cdn.jsdelivr.net/gh/uupaa/font@master/MonumentExtended-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Monument Extended';
+  src: url('https://cdn.jsdelivr.net/gh/uupaa/font@master/MonumentExtended-Ultrabold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --archive-cols: 1;
+  }
+}
+
+/* ─── GLOBAL RESET ───────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #252618;
+  color: #F2E6DF;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ─── TYPOGRAPHY UTILITIES ───────────────────────────────────────── */
+.font-monument {
+  font-family: 'Monument Extended', 'Arial Black', sans-serif;
+  letter-spacing: -0.01em;
+}
+
+.font-editorial {
+  font-family: 'Playfair Display', 'Georgia', serif;
+}
+
+.font-sans-body {
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* ─── FILM GRAIN OVERLAY ─────────────────────────────────────────── */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+  mix-blend-mode: overlay;
+}
+
+/* ─── GLASSMORPHIC CARD ──────────────────────────────────────────── */
+.glass-card {
+  background: rgba(52, 64, 33, 0.30);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(166, 143, 31, 0.15);
+}
+
+.glass-nav {
+  background: rgba(37, 38, 24, 0.70);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(115, 92, 25, 0.50);
+}
+
+/* In your global CSS or Tailwind @layer */
+.masonry-grid-col {
+  padding-left: 12px;
+}
+
+.masonry-grid-col:first-child {
+  padding-left: 0;
+}
+
+/* ─── SCROLLBAR ──────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #252618;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #735C19;
+  border-radius: 2px;
+}
+
+/* ─── CAROUSEL DRAG ──────────────────────────────────────────────── */
+.carousel-track {
+  cursor: grab;
+  user-select: none;
+}
+
+.carousel-track:active {
+  cursor: grabbing;
+}
+
+/* ─── PORTAL RING ────────────────────────────────────────────────── */
+@keyframes portal-pulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(166, 143, 31, 0.0), 0 0 60px 20px rgba(166, 143, 31, 0.08);
+  }
+
+  50% {
+    box-shadow: 0 0 0 8px rgba(166, 143, 31, 0.0), 0 0 90px 35px rgba(166, 143, 31, 0.16);
+  }
+}
+
+.portal-ring {
+  animation: portal-pulse 5s ease-in-out infinite;
+}
+
+/* ─── BLEED TEXT ─────────────────────────────────────────────────── */
+.bleed-text {
+  font-family: 'Monument Extended', 'Arial Black', sans-serif;
+  font-size: clamp(5rem, 14vw, 14rem);
+  font-weight: 800;
+  color: #F2E6DF;
+  opacity: 0.04;
+  white-space: nowrap;
+  overflow: hidden;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ─── GOLD SHIMMER BUTTON ────────────────────────────────────────── */
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  border: 1px solid #A68F1F;
+  color: #A68F1F;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: transparent;
+  transition: background 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-gold:hover {
+  background: #A68F1F;
+  color: #252618;
+}
+
+/* ─── SECTION PADDING ────────────────────────────────────────────── */
+.section-pad {
+  padding-left: clamp(2rem, 5vw, 4rem);
+  padding-right: clamp(2rem, 5vw, 4rem);
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+
+/* ─── IMAGE ASPECT 4:5 ───────────────────────────────────────────── */
+.aspect-5-4 {
+  aspect-ratio: 5 / 4;
+}
+
+/* ─── GRADIENT SWEEP FOR FEATURED CARDS ─────────────────────────── */
+.featured-card-grad {
+  background: linear-gradient(135deg, #344021 0%, #1e280f 60%, #252618 100%);
+}
