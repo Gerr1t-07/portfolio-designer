@@ -52,15 +52,13 @@ export default function ContactFooter() {
 
       {/* Background text */}
       <div
-        className="pointer-events-none select-none absolute inset-y-0 flex items-center justify-center w-[100vw] overflow-hidden left-0"
+        className="pointer-events-none select-none absolute bottom-38 md:bottom-0 inset-y-0 flex items-center justify-center w-screen overflow-hidden left-0"
         aria-hidden="true"
       >
         <span
-          className="font-monument"
+          className="font-display text-cream opacity-2.5"
           style={{
             fontSize: 'clamp(6rem, 20vw, 22rem)',
-            color: '#F2E6DF',
-            opacity: 0.025,
             letterSpacing: '-0.03em',
             whiteSpace: 'nowrap',
             lineHeight: 1,
@@ -77,8 +75,7 @@ export default function ContactFooter() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="font-sans-body tracking-[0.28em] text-xs uppercase select-none"
-          style={{ color: '#A68F1F' }}
+          className="font-sans-body tracking-[0.28em] text-xs uppercase select-none text-gold"
         >
           Let's collaborate
         </motion.p>
@@ -89,10 +86,8 @@ export default function ContactFooter() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="font-monument leading-none select-none"
+          className="font-display leading-none select-none text-4xl md:text-7xl lg:9xl text-cream"
           style={{
-            fontSize: 'clamp(3rem, 10vw, 10rem)',
-            color: '#F2E6DF',
             letterSpacing: '-0.025em',
           }}
         >
@@ -116,14 +111,14 @@ export default function ContactFooter() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
-            <span className="relative z-10 transition-colors flex gap-2 duration-300 group-hover:text-[#252618]">
+            <span className="relative z-10 transition-colors flex gap-2 duration-300 group-hover:text-bg">
               <Mail size={16} />
               sachergerrit@gmail.com
               <ArrowUpRight size={15} />
             </span>
 
             <motion.div
-              className="absolute bg-[#A68F1F] rounded-full pointer-events-none"
+              className="absolute bg-gold rounded-full pointer-events-none"
               style={{
                 width: '700px',
                 height: '700px',
@@ -154,7 +149,7 @@ export default function ContactFooter() {
               href={href}
               target={'_blank'}
               aria-label={label}
-              className="transition-all duration-200 opacity-50 hover:opacity-100 transition-all duration-300"
+              className="opacity-50 hover:opacity-100 transition-all duration-300"
             >
               <Icon style={{ width: '20px', height: '20px' }} />
             </a>
@@ -163,24 +158,20 @@ export default function ContactFooter() {
 
         {/* Footer bar */}
         <div
-          className="mt-12 pt-6 w-full flex flex-col sm:flex-row items-center justify-between gap-4"
-          style={{ borderTop: '1px solid rgba(166,143,31,0.12)', paddingTop: '0.75rem' }}
+          className="mt-24 h-10 w-full flex flex-row items-center justify-between gap-4 pt-3 border-t border-white/5"
         >
           <span
-            className="font-monument text-xs tracking-widest"
-            style={{ color: 'rgba(242,230,223,0.25)' }}
+            className="font-display text-xs tracking-widest top-10"
           >
             <img src="/Logo.png" alt="Logo" className='h-3 w-auto' />
           </span>
           <span
-            className="font-sans-body text-xs"
-            style={{ color: 'rgba(242,230,223,0.22)' }}
+            className="font-sans-body text-xs text-white/20"
           >
             © 2026 — All rights reserved
           </span>
           <span
-            className="font-sans-body text-xs tracking-widest uppercase"
-            style={{ color: 'rgba(166,143,31,0.35)' }}
+            className="font-sans-body text-xs hidden md:block tracking-widest uppercase text-gold/30"
           >
             Crafted with intention
           </span>

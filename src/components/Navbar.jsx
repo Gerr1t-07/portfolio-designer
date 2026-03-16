@@ -462,11 +462,11 @@ export default function Navbar({ scrollTo }) {
                           background: 'transparent',
                         }}
                       >
-                        <span className="relative z-10 transition-colors duration-300 group-hover:text-[#252618]">
+                        <span className="relative z-10 transition-colors duration-300 group-hover:text-bg">
                           Get in Touch <ArrowUpRight size={12} className="inline ml-1" />
                         </span>
                         <motion.div
-                          className="absolute bg-[#A68F1F] rounded-full pointer-events-none"
+                          className="absolute bg-gold rounded-full pointer-events-none"
                           style={{
                             width: '450px', height: '450px',
                             translateX: '-50%', translateY: '-50%',
@@ -481,8 +481,8 @@ export default function Navbar({ scrollTo }) {
                     </div>
 
                     <button
-                      className="md:hidden shrink-0"
-                      style={{ color: '#F2E6DF', paddingRight: '1rem' }}
+                      className="md:hidden shrink-0 text-cream"
+                      style={{ paddingRight: '1rem' }}
                       onClick={() => setMenuOpen((v) => !v)}
                       aria-label="Toggle menu"
                     >
@@ -513,7 +513,7 @@ export default function Navbar({ scrollTo }) {
                 <li key={l.id}>
                   <button
                     onClick={() => { scrollTo(l.id); setMenuOpen(false); }}
-                    className="font-monument w-full flex items-center gap-4 text-left text-base text-[#F2E6DF] hover:text-[#A68F1F] tracking-[0.16em] uppercase transition-colors"
+                    className="font-display w-full flex items-center gap-4 text-left text-base text-cream hover:text-gold tracking-[0.16em] uppercase transition-colors"
                   >
                     <img src={l.icon} alt={l.label} className="h-5 w-5 object-contain" style={{ filter: 'brightness(0) invert(1)' }} />
                     {l.label}

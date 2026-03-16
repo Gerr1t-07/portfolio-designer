@@ -1,5 +1,5 @@
 @import url('https://fonts.bunny.net/css?family=playfair-display:400i,700i&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Climate+Crisis&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -12,26 +12,9 @@
   --color-card: #344021;
   --color-card-dim: rgba(52, 64, 33, 0.30);
 
-  --font-monument: 'Climate Crisis', 'Bebas Neue', 'Arial Black', sans-serif;
+  --font-display: 'Climate Crisis', 'Arial Black', sans-serif;
   --font-editorial: 'Playfair Display', 'Georgia', serif;
   --font-sans: 'Inter', system-ui, sans-serif;
-}
-
-/* ─── MONUMENT EXTENDED (self-hosted CDN fallback) ───────────────── */
-@font-face {
-  font-family: 'Climate Crisis';
-  src: url('https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Climate+Crisis&display=swap') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Climate Crisis';
-  src: url('https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Climate+Crisis&display=swap') format('woff2');
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
 }
 
 @media (max-width: 768px) {
@@ -63,7 +46,7 @@ body {
 }
 
 /* ─── TYPOGRAPHY UTILITIES ───────────────────────────────────────── */
-.font-monument {
+.font-display {
   font-family: 'Climate Crisis', 'Arial Black', sans-serif;
   letter-spacing: -0.01em;
 }
@@ -104,15 +87,6 @@ body {
   border-bottom: 1px solid rgba(115, 92, 25, 0.50);
 }
 
-/* In your global CSS or Tailwind @layer */
-.masonry-grid-col {
-  padding-left: 12px;
-}
-
-.masonry-grid-col:first-child {
-  padding-left: 0;
-}
-
 /* ─── SCROLLBAR ──────────────────────────────────────────────────── */
 ::-webkit-scrollbar {
   width: 4px;
@@ -127,36 +101,9 @@ body {
   border-radius: 2px;
 }
 
-/* ─── CAROUSEL DRAG ──────────────────────────────────────────────── */
-.carousel-track {
-  cursor: grab;
-  user-select: none;
-}
-
-.carousel-track:active {
-  cursor: grabbing;
-}
-
-/* ─── PORTAL RING ────────────────────────────────────────────────── */
-@keyframes portal-pulse {
-
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 rgba(166, 143, 31, 0.0), 0 0 60px 20px rgba(166, 143, 31, 0.08);
-  }
-
-  50% {
-    box-shadow: 0 0 0 8px rgba(166, 143, 31, 0.0), 0 0 90px 35px rgba(166, 143, 31, 0.16);
-  }
-}
-
-.portal-ring {
-  animation: portal-pulse 5s ease-in-out infinite;
-}
-
 /* ─── BLEED TEXT ─────────────────────────────────────────────────── */
 .bleed-text {
-  font-family: 'Monument Extended', 'Arial Black', sans-serif;
+  font-family: 'Climate Crisis', 'Arial Black', sans-serif;
   font-size: clamp(5rem, 14vw, 14rem);
   font-weight: 800;
   color: #F2E6DF;
@@ -189,22 +136,4 @@ body {
 .btn-gold:hover {
   background: #A68F1F;
   color: #252618;
-}
-
-/* ─── SECTION PADDING ────────────────────────────────────────────── */
-.section-pad {
-  padding-left: clamp(2rem, 5vw, 4rem);
-  padding-right: clamp(2rem, 5vw, 4rem);
-  padding-top: 8rem;
-  padding-bottom: 8rem;
-}
-
-/* ─── IMAGE ASPECT 4:5 ───────────────────────────────────────────── */
-.aspect-5-4 {
-  aspect-ratio: 5 / 4;
-}
-
-/* ─── GRADIENT SWEEP FOR FEATURED CARDS ─────────────────────────── */
-.featured-card-grad {
-  background: linear-gradient(135deg, #344021 0%, #1e280f 60%, #252618 100%);
 }

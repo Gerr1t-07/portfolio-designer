@@ -6,7 +6,6 @@ import Services from './components/sections/Services';
 import About from './components/sections/About';
 import ContactFooter from './components/sections/ContactFooter';
 import Preloader from './components/Preloader';
-import WaveSeparator from './components/WaveSeparator';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -17,7 +16,7 @@ function App() {
   };
 
   return (
-    <div className="relative min-h-screen" style={{ background: '#252618', color: '#F2E6DF' }}>
+    <div className="relative min-h-screen bg-bg text-cream">
       {/* Film grain overlay */}
       <div className="grain-overlay" aria-hidden="true" />
 
@@ -32,20 +31,18 @@ function App() {
         {/* 1 — Hero */}
         <Hero scrollTo={scrollTo} />
 
-        {/* Organic wave separator */}
-
         {/* 2 — Work */}
-        <section id="work" style={{ background: '#1e280f' }}>
+        <section id="work" className="bg-[#1e280f]">
           <WorkSection />
         </section>
 
         {/* 3 — Services */}
-        <section id="services" style={{ background: '#252618' }}>
+        <section id="services" className="bg-bg">
           <Services />
         </section>
 
         {/* 4 — About */}
-        <section id="about" style={{ background: '#1e280f' }}>
+        <section id="about" className="bg-[#1e280f]">
           <About />
         </section>
 

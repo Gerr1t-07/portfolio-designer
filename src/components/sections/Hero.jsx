@@ -52,7 +52,7 @@ export default function Hero({ scrollTo }) {
         `}
       </style>
       <div
-        className="absolute top-24 right-[42%] md:top-10 md:right-10 font-monument text-xs tracking-[0.18em] pointer-events-none"
+        className="absolute top-24 right-[42%] md:top-10 md:right-10 font-display text-xs tracking-[0.18em] pointer-events-none"
         style={{ color: 'rgba(166,143,31,0.38)', zIndex: 20 }}
       >
         EST. 2026
@@ -74,28 +74,23 @@ export default function Hero({ scrollTo }) {
             <motion.div variants={fadeUp} className="flex flex-col items-center pointer-events-none">
               <p
                 variants={fadeUp}
-                className="font-sans-body text-xs tracking-[0.28em] uppercase mb-4"
-                style={{ color: '#A68F1F' }}
+                className="font-sans-body text-xs tracking-[0.28em] uppercase mb-4 text-gold"
               >
                 VISUAL ARTIST & DESIGNER
               </p>
               <h1
-                className="leading-[0.9]"
+                className="leading-[0.9] font-display text-cream"
                 style={{
-                  fontFamily: "'Climate Crisis', cursive",
                   fontSize: 'clamp(3.5rem, 10vw, 8rem)',
-                  color: '#F2E6DF',
                   letterSpacing: '-0.025em'
                 }}
               >
                 DESIGN
               </h1>
               <p
-                className="italic mt-2 md:mt-0"
+                className="italic mt-2 md:mt-0 font-display text-cream"
                 style={{
-                  fontFamily: "'Climate Crisis', cursive",
                   fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)',
-                  color: '#F2E6DF',
                 }}
               >
                 with purpose
@@ -107,20 +102,16 @@ export default function Hero({ scrollTo }) {
 
               <motion.button
                 ref={btnRef}
-                className="relative overflow-hidden group rounded-full font-sans-body tracking-wider outline-1 cursor-pointer text-sm shadow-lg pointer-events-auto transition-transform duration-300 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center px-8 py-3 w-[180px] h-[40px]"
-                style={{
-                  background: 'transparent',
-                  color: '#A68F1F',
-                }}
+                className="relative text-gold  bg-transparent overflow-hidden group rounded-full font-sans-body tracking-wider outline-1 cursor-pointer text-sm shadow-lg pointer-events-auto transition-transform duration-300 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center px-8 py-3 w-[180px] h-10"
                 onClick={() => scrollTo('contact')}
                 onMouseEnter={handleBtnMouseEnter}
                 onMouseLeave={handleBtnMouseLeave}
               >
-                <span className="relative z-10 transition-colors duration-300 group-hover:text-[#252618]">GET IN TOUCH</span>
+                <span className="relative z-10 transition-colors duration-300 group-hover:text-bg">GET IN TOUCH</span>
 
                 {/* Dynamic Fill Circle */}
                 <motion.div
-                  className="absolute bg-[#A68F1F] rounded-full pointer-events-none"
+                  className="absolute bg-gold rounded-full pointer-events-none"
                   style={{
                     width: '500px', // Extra large to ensure full coverage
                     height: '500px',
@@ -163,7 +154,7 @@ export default function Hero({ scrollTo }) {
         className="group absolute bottom-32 md:bottom-48 left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer z-50 pointer-events-auto hover:scale-[1.05] active:scale-[0.95] transition-all duration-300"
         aria-label="Scroll to work"
       >
-        <span className="font-sans-body text-[10px] tracking-[0.3em] uppercase mb-1 text-[#F2E6DF] opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+        <span className="font-sans-body text-[10px] tracking-[0.3em] uppercase mb-1 text-cream opacity-80 group-hover:opacity-100 transition-opacity duration-300">
           Scroll
         </span>
         <motion.div
@@ -171,7 +162,7 @@ export default function Hero({ scrollTo }) {
           transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
           className="group-hover:scale-110 transition-transform duration-300"
         >
-          <ChevronDown size={22} strokeWidth={2.5} className="text-[#F2E6DF] group-hover:text-white transition-colors duration-300" />
+          <ChevronDown size={22} strokeWidth={2.5} className="text-cream group-hover:text-white transition-colors duration-300" />
         </motion.div>
       </motion.button>
     </section>

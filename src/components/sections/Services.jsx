@@ -86,8 +86,8 @@ export default function Services() {
           style={{ paddingBottom: "5rem" }}
         >
           <p
-            className="font-sans-body text-sm tracking-widest uppercase opacity-40 mt-4"
-            style={{ color: '#F2E6DF', paddingLeft: 'clamp(1.5rem, 5vw, 4rem)', paddingTop: '1rem' }}
+            className="font-sans-body text-sm tracking-widest uppercase opacity-40 mt-4 text-cream"
+            style={{ paddingLeft: 'clamp(1.5rem, 5vw, 4rem)', paddingTop: '1rem' }}
           >
             What I Do
           </p>
@@ -135,13 +135,13 @@ export default function Services() {
                   >
                     <div className="flex flex-col items-center">
                       <div className="flex items-center gap-4 mb-8">
-                        <span className="font-monument text-sm" style={{ color: '#A68F1F', opacity: 0.6 }}>{s.number}</span>
+                        <span className="font-display text-sm text-gold opacity-60">{s.number}</span>
                         <Icon size={32} style={{ color: 'rgba(166,143,31,0.50)' }} />
                       </div>
 
                       <h3
-                        className="font-monument mb-6 text-2xl md:text-4xl lg:text-6xl"
-                        style={{ color: '#F2E6DF', letterSpacing: '-0.01em' }}
+                        className="font-display mb-6 text-2xl md:text-4xl lg:text-6xl text-cream"
+                        style={{ letterSpacing: '-0.01em' }}
                       >
                         {s.title}
                       </h3>
@@ -157,7 +157,7 @@ export default function Services() {
                         {s.keywords.map((k) => (
                           <span
                             key={k}
-                            className="font-sans-body text-xs tracking-wider px-3 py-1 border border-[#A68F1F]/20 rounded-full"
+                            className="font-sans-body text-xs tracking-wider px-3 py-1 border border-gold/20 rounded-full"
                             style={{ color: 'rgba(166,143,31,0.55)', backgroundColor: 'rgba(166,143,31,0.05)', padding: '0.25rem', marginTop: '0.5rem' }}
                           >
                             {k}
@@ -172,12 +172,12 @@ export default function Services() {
 
           {/* Controls Overlay */}
           <div className="absolute h-[50%] w-screen top-0" onClick={() => (moveToIndex(activeIndex - 1))}>
-            <div className="flex w-full h-full items-start justify-center md:justify-end text-center text-[#A68F1F] md:text-[#A68F1F]/50" style={{ padding: "5rem", opacity: tooltipVisible ? 1 : 0, transition: "opacity 0.5s ease" }}>
+            <div className="flex w-full h-full items-start justify-center md:justify-end text-center text-gold md:text-gold/50" style={{ padding: "5rem", opacity: tooltipVisible ? 1 : 0, transition: "opacity 0.5s ease" }}>
               click for previous ↑
             </div>
           </div>
           <div className="absolute h-[50%] w-screen bottom-0" onClick={() => (moveToIndex(activeIndex + 1))}>
-            <div className='flex w-full h-full items-end justify-center md:justify-end text-center text-[#A68F1F] md:text-[#A68F1F]/50' style={{ padding: "5rem", opacity: tooltipVisible ? 1 : 0, transition: "opacity 0.5s ease" }}>
+            <div className='flex w-full h-full items-end justify-center md:justify-end text-center text-gold md:text-gold/50' style={{ padding: "5rem", opacity: tooltipVisible ? 1 : 0, transition: "opacity 0.5s ease" }}>
               click for next ↓
             </div>
           </div>
@@ -186,7 +186,7 @@ export default function Services() {
 
       {/* Background decoration */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] pointer-events-none z-0">
-        <div className="absolute inset-0 rounded-full bg-[#A68F1F]/5 blur-[120px]" />
+        <div className="absolute inset-0 rounded-full bg-gold/5 blur-[120px]" />
       </div>
     </section>
   );

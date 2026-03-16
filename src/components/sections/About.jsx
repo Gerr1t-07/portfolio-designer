@@ -134,7 +134,7 @@ export default function About() {
                 zIndex: 5,
               }}
             >
-              <p className="font-monument text-xs tracking-widest drop-shadow-md" style={{ color: '#F2E6DF' }}>
+              <p className="font-display text-xs tracking-widest drop-shadow-md text-cream">
                 CREATIVE DIRECTOR
               </p>
             </div>
@@ -146,19 +146,16 @@ export default function About() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="glass-card absolute bottom-[-2rem] right-4 lg:right-[-2rem] px-6 py-4 rounded-xl"
+            className="glass-card absolute -bottom-8 right-4 lg:-right-8 px-6 py-4 rounded-xl"
             style={{ padding: '1rem' }}
           >
             {STATS.map((s, i) => (
-              <div key={s.label} className="flex items-center justify-between gap-4 mb-2 last:mb-0" style={{ paddingBottom: i === STATS.length - 1 ? '0' : '0.75rem' }}>
-                <span
-                  style={{ fontFamily: "'Climate Crisis', cursive", fontSize: '1rem', color: '#A68F1F', lineHeight: 1 }}
-                >
+              <div key={s.label} className="flex items-center justify-between gap-4 mb-2 last:mb-0 font-display text-[1rem] text-gold" style={{ paddingBottom: i === STATS.length - 1 ? '0' : '0.75rem' }}>
+                <span>
                   {s.value}
                 </span>
                 <span
-                  className="font-sans-body text-xs pb-0.5 opacity-50"
-                  style={{ color: '#F2E6DF' }}
+                  className="font-sans-body text-xs pb-0.5 opacity-50 text-cream"
                 >
                   {s.label}
                 </span>
@@ -176,10 +173,9 @@ export default function About() {
           className="flex flex-col gap-7 pt-8 lg:pt-0"
         >
           <p
-            className="font-editorial"
+            className="font-editorial text-cream"
             style={{
               fontSize: 'clamp(1.4rem, 3vw, 2.2rem)',
-              color: '#F2E6DF',
               fontStyle: 'italic',
               lineHeight: 1.4,
             }}
@@ -201,32 +197,23 @@ export default function About() {
             I've collaborated with studios, labels, and fashion houses across Europe and North America — always asking the same question: what does this feel like?
           </p>
 
-          <div className="flex items-center gap-4 ml-auto">
+          <div className="flex items-end justify-end gap-4 ml-auto h-12 md:h-16">
             <motion.button
               ref={ctaBtnRef}
               onMouseEnter={handleCtaMouseEnter}
               onMouseLeave={handleCtaMouseLeave}
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="btn-gold rounded-full text-xs shrink-0 whitespace-nowrap relative overflow-hidden group transition-transform duration-300 hover:scale-[1.02] active:scale-[0.98]"
-              style={{
-                paddingLeft: '1.25rem', paddingRight: '1.25rem', paddingTop: '0.75rem', paddingBottom: '0.75rem',
-                background: 'transparent'
-              }}
+              className="btn-gold rounded-full text-xs shrink-0 whitespace-nowrap relative overflow-hidden group transition-transform duration-300 hover:scale-[1.02] active:scale-[0.98] px-5 py-3 bg-transparent"
             >
-              <span className="relative z-10 transition-colors duration-300 group-hover:text-[#252618]">
+              <span className="relative z-10 transition-colors duration-300 group-hover:text-bg">
                 Start a Project
               </span>
 
               <motion.div
-                className="absolute bg-[#A68F1F] rounded-full pointer-events-none"
+                className={'absolute bg-gold rounded-full pointer-events-none w-[450px] h-[450px] -translate-x-[50%] -translate-y-[50%] z-0'}
                 style={{
-                  width: '450px',
-                  height: '450px',
-                  translateX: '-50%',
-                  translateY: '-50%',
                   left: ctaHoverData.x,
                   top: ctaHoverData.y,
-                  zIndex: 0,
                 }}
                 initial={{ scale: 0 }}
                 animate={{ scale: ctaHoverData.hover ? 1 : 0 }}
