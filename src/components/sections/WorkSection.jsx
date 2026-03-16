@@ -1653,7 +1653,7 @@ function ProjectPage({ project, onClose }) {
 
       transition={{ duration: 0.5 }}
 
-      className="fixed inset-0 z-[60] overflow-y-auto"
+      className="fixed inset-0 z-60 overflow-y-auto"
 
       style={{ background: '#1a1e0e' }}
 
@@ -2701,7 +2701,7 @@ function ArchiveGrid({ scrollAnchor, onProjectClick }) {
 
           <div ref={gridContainerRef}>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 md:grid-cols-3 gap-3">
 
               {columns.map((col, i) => (
 
@@ -2735,7 +2735,7 @@ function ArchiveGrid({ scrollAnchor, onProjectClick }) {
 
         {!isExpanded && (
 
-          <div className="flex justify-center" style={{ padding: '0 clamp(1.5rem, 5vw, 4rem)', paddingTop: '3rem' }}>
+          <div className="flex justify-center">
 
             <button
 
@@ -2745,7 +2745,7 @@ function ArchiveGrid({ scrollAnchor, onProjectClick }) {
 
             >
 
-              <span className="font-sans-body text-[10px] tracking-[0.3em] uppercase" style={{ color: '#F2E6DF', opacity: 0.8 }}>
+              <span className="font-sans-body text-[10px] tracking-[0.3em] uppercase pt-52" style={{ color: '#F2E6DF', opacity: 0.8 }}>
 
                 See More
 
@@ -2817,7 +2817,7 @@ export default function WorkSection() {
 
         {/* Archive heading */}
 
-        <div ref={archiveHeaderRef} style={{ padding: '6rem clamp(0rem, 5vw, 0rem) 3rem' }}>
+        <div ref={archiveHeaderRef} style={{ padding: '2rem clamp(0rem, 5vw, 0rem) 3rem' }}>
 
           <BleedText text="ARCHIVE" align="right" />
 

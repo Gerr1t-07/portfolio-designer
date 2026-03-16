@@ -482,7 +482,7 @@ export default function Navbar({ scrollTo }) {
 
                     <button
                       className="md:hidden shrink-0"
-                      style={{ color: '#F2E6DF' }}
+                      style={{ color: '#F2E6DF', paddingRight: '1rem' }}
                       onClick={() => setMenuOpen((v) => !v)}
                       aria-label="Toggle menu"
                     >
@@ -505,33 +505,29 @@ export default function Navbar({ scrollTo }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.25 }}
-            className="glass-nav fixed inset-x-4 top-20 z-40 rounded-2xl p-6"
-            style={{ border: '1px solid rgba(115,92,25,0.45)' }}
+            className="glass-nav fixed inset-x-4 top-20 z-40 rounded-2xl border border-gold/45"
+            style={{ padding: '1.5rem' }}
           >
-            <ul className="flex flex-col gap-4">
+            <ul className="flex flex-col gap-4 w-[90%]">
               {links.map((l) => (
                 <li key={l.id}>
                   <button
                     onClick={() => { scrollTo(l.id); setMenuOpen(false); }}
-                    className="font-monument w-full flex items-center gap-4 text-left text-base tracking-[0.16em] uppercase transition-colors"
-                    style={{ color: '#F2E6DF' }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = '#A68F1F')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = '#F2E6DF')}
+                    className="font-monument w-full flex items-center gap-4 text-left text-base text-[#F2E6DF] hover:text-[#A68F1F] tracking-[0.16em] uppercase transition-colors"
                   >
                     <img src={l.icon} alt={l.label} className="h-5 w-5 object-contain" style={{ filter: 'brightness(0) invert(1)' }} />
                     {l.label}
                   </button>
                 </li>
               ))}
-              <li className="pt-2">
-                <button
-                  onClick={() => { scrollTo('contact'); setMenuOpen(false); }}
-                  className="btn-gold w-full justify-center rounded-full"
-                >
-                  Get in Touch <ArrowUpRight size={13} />
-                </button>
-              </li>
             </ul>
+            <button
+              onClick={() => { scrollTo('contact'); setMenuOpen(false); }}
+              className="btn-gold w-full justify-center rounded-full"
+              style={{ marginTop: '1rem'}}
+            > 
+              Get in Touch <ArrowUpRight size={13} />
+            </button>
           </motion.div>
         )}
       </AnimatePresence>

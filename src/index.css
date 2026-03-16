@@ -12,23 +12,23 @@
   --color-card: #344021;
   --color-card-dim: rgba(52, 64, 33, 0.30);
 
-  --font-monument: 'Monument Extended', 'Bebas Neue', 'Arial Black', sans-serif;
+  --font-monument: 'Climate Crisis', 'Bebas Neue', 'Arial Black', sans-serif;
   --font-editorial: 'Playfair Display', 'Georgia', serif;
   --font-sans: 'Inter', system-ui, sans-serif;
 }
 
 /* ─── MONUMENT EXTENDED (self-hosted CDN fallback) ───────────────── */
 @font-face {
-  font-family: 'Monument Extended';
-  src: url('https://cdn.jsdelivr.net/gh/uupaa/font@master/MonumentExtended-Regular.woff2') format('woff2');
+  font-family: 'Climate Crisis';
+  src: url('https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Climate+Crisis&display=swap') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Monument Extended';
-  src: url('https://cdn.jsdelivr.net/gh/uupaa/font@master/MonumentExtended-Ultrabold.woff2') format('woff2');
+  font-family: 'Climate Crisis';
+  src: url('https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Climate+Crisis&display=swap') format('woff2');
   font-weight: 800;
   font-style: normal;
   font-display: swap;
@@ -64,7 +64,7 @@ body {
 
 /* ─── TYPOGRAPHY UTILITIES ───────────────────────────────────────── */
 .font-monument {
-  font-family: 'Monument Extended', 'Arial Black', sans-serif;
+  font-family: 'Climate Crisis', 'Arial Black', sans-serif;
   letter-spacing: -0.01em;
 }
 

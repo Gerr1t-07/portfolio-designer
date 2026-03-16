@@ -94,7 +94,7 @@ export default function Services() {
         </motion.div>
 
         {/* Carousel Container */}
-        <div className="relative w-full h-[600px] flex items-center justify-center select-none touch-none">
+        <div className="relative w-full h-[600px] flex items-center justify-center select-none">
 
           <div className="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center">
             {SERVICES.map((s, i) => {
@@ -111,11 +111,10 @@ export default function Services() {
               const isNext = relativeIndex === 1;
 
               return (
-                <>
                   <motion.div
                     key={s.number}
                     className="absolute w-full max-w-[800px] flex flex-col items-center text-center cursor-pointer z-50"
-                    style={{ pointerEvents: isActive ? 'auto' : 'none' }}
+                    style={{ pointerEvents: isActive ? 'auto' : 'none', touchAction: isActive ? 'none' : 'auto' }}
                     initial={false}
                     animate={{
                       y: isActive ? 0 : isPrev ? -250 : 250,
@@ -141,14 +140,14 @@ export default function Services() {
                       </div>
 
                       <h3
-                        className="font-monument mb-6"
-                        style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', color: '#F2E6DF', letterSpacing: '-0.01em' }}
+                        className="font-monument mb-6 text-2xl md:text-4xl lg:text-6xl"
+                        style={{ color: '#F2E6DF', letterSpacing: '-0.01em' }}
                       >
                         {s.title}
                       </h3>
 
                       <p
-                        className="font-sans-body text-lg leading-relaxed mb-8 max-w-[600px]"
+                        className="font-sans-body text-lg leading-relaxed mb-8 max-w-[90vw]"
                         style={{ color: 'rgba(242,230,223,0.70)' }}
                       >
                         {s.body}
@@ -167,20 +166,18 @@ export default function Services() {
                       </div>
                     </div>
                   </motion.div>
-
-                </>
               );
             })}
           </div>
 
           {/* Controls Overlay */}
-          <div className="absolute h-[50%] w-[100vw] top-0" onClick={() => (moveToIndex(activeIndex - 1))}>
-            <div className="flex w-full h-full items-center justify-end text-right text-[#A68F1F]" style={{ padding: "5rem", opacity: tooltipVisible ? 0.5 : 0, transition: "opacity 0.5s ease" }}>
+          <div className="absolute h-[50%] w-screen top-0" onClick={() => (moveToIndex(activeIndex - 1))}>
+            <div className="flex w-full h-full items-start justify-center md:justify-end text-center text-[#A68F1F] md:text-[#A68F1F]/50" style={{ padding: "5rem", opacity: tooltipVisible ? 1 : 0, transition: "opacity 0.5s ease" }}>
               click for previous ↑
             </div>
           </div>
-          <div className="absolute h-[50%] w-[100vw] bottom-0" onClick={() => (moveToIndex(activeIndex + 1))}>
-            <div className="flex w-full h-full items-center justify-end text-right text-[#A68F1F]" style={{ padding: "5rem", opacity: tooltipVisible ? 0.5 : 0, transition: "opacity 0.5s ease" }}>
+          <div className="absolute h-[50%] w-screen bottom-0" onClick={() => (moveToIndex(activeIndex + 1))}>
+            <div className='flex w-full h-full items-end justify-center md:justify-end text-center text-[#A68F1F] md:text-[#A68F1F]/50' style={{ padding: "5rem", opacity: tooltipVisible ? 1 : 0, transition: "opacity 0.5s ease" }}>
               click for next ↓
             </div>
           </div>
