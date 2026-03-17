@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/sections/Hero';
 import WorkSection from './components/sections/WorkSection';
@@ -8,7 +8,6 @@ import ContactFooter from './components/sections/ContactFooter';
 import Preloader from './components/Preloader';
 
 function App() {
-  const [loaded, setLoaded] = useState(false);
 
   const scrollTo = (id) => {
     const el = document.getElementById(id);
@@ -21,7 +20,7 @@ function App() {
       <div className="grain-overlay" aria-hidden="true" />
 
       {/* Preloader */}
-      <Preloader onFinished={() => setLoaded(true)} />
+      <Preloader />
 
       {/* Navigation */}
       <Navbar scrollTo={scrollTo} />

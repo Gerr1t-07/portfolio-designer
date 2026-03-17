@@ -1,6 +1,7 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
+import HoverFillButton from './HoverFillButton';
 
 const containerVar = {
   hidden: {},
@@ -17,27 +18,6 @@ export default function Hero({ scrollTo }) {
     target: containerRef,
     offset: ['start start', 'end start'],
   });
-  const bgWordY = useTransform(scrollYProgress, [0, 1], [0, -50]);
-
-  // Button Hover State Setup
-  const btnRef = useRef(null);
-  const [btnHoverData, setBtnHoverData] = useState({ x: 0, y: 0, hover: false });
-
-  const handleBtnMouseEnter = (e) => {
-    if (!btnRef.current) return;
-    const rect = btnRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    setBtnHoverData({ x, y, hover: true });
-  };
-
-  const handleBtnMouseLeave = (e) => {
-    if (!btnRef.current) return;
-    const rect = btnRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    setBtnHoverData({ x, y, hover: false });
-  };
 
   return (
     <section
@@ -52,7 +32,7 @@ export default function Hero({ scrollTo }) {
         `}
       </style>
       <div
-        className="absolute top-24 right-[42%] md:top-10 md:right-10 font-display text-xs tracking-[0.18em] pointer-events-none"
+        className="absolute top-24 right-[50vw-w] md:top-10 md:right-10 font-display text-xs tracking-[0.18em] pointer-events-none"
         style={{ color: 'rgba(166,143,31,0.38)', zIndex: 20 }}
       >
         EST. 2026
@@ -97,35 +77,14 @@ export default function Hero({ scrollTo }) {
               </p>
             </motion.div>
 
-            {/* Quote & CTA Group */}
-            <motion.div variants={fadeUp} className="mt-14 flex flex-col items-center gap-8 pointer-events-auto">
-
-              <motion.button
-                ref={btnRef}
-                className="relative text-gold  bg-transparent overflow-hidden group rounded-full font-sans-body tracking-wider outline-1 cursor-pointer text-sm shadow-lg pointer-events-auto transition-transform duration-300 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center px-8 py-3 w-[180px] h-10"
+            {/* CTA Button */}
+            <motion.div variants={fadeUp} className="flex flex-col items-center pointer-events-auto">
+              <HoverFillButton
+                className="px-8 py-3 w-[180px] h-12 border"
                 onClick={() => scrollTo('contact')}
-                onMouseEnter={handleBtnMouseEnter}
-                onMouseLeave={handleBtnMouseLeave}
               >
-                <span className="relative z-10 transition-colors duration-300 group-hover:text-bg">GET IN TOUCH</span>
-
-                {/* Dynamic Fill Circle */}
-                <motion.div
-                  className="absolute bg-gold rounded-full pointer-events-none"
-                  style={{
-                    width: '500px', // Extra large to ensure full coverage
-                    height: '500px',
-                    translateX: '-50%',
-                    translateY: '-50%',
-                    left: btnHoverData.x,
-                    top: btnHoverData.y,
-                    zIndex: 0,
-                  }}
-                  initial={{ scale: 0 }}
-                  animate={{ scale: btnHoverData.hover ? 1 : 0 }}
-                  transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }} // smooth ease out curve
-                />
-              </motion.button>
+                GET IN TOUCH
+              </HoverFillButton>
             </motion.div>
           </div>
         </div>

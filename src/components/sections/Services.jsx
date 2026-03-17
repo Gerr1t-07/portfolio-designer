@@ -1,29 +1,29 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Eye, Layers, Zap, ChevronUp, ChevronDown } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Signpost, MousePointer2, Box } from 'lucide-react';
 import BleedText from '../BleedText';
 
 const SERVICES = [
   {
-    icon: Eye,
+    icon: Signpost,
     number: '01',
     title: 'Art Direction',
-    body: 'Visual strategy and creative vision for campaigns, brands, and digital products. From mood to masterpiece.',
-    keywords: ['Brand Identity', 'Visual Systems', 'Campaign Direction'],
+    body: 'Visual strategy and creative direction for brands that need a unique personality. Concept to execution.',
+    keywords: ['Systems Thinking', 'Visual Narrative', 'Concept Development'],
   },
   {
-    icon: Layers,
+    icon: MousePointer2,
     number: '02',
-    title: '3D & Motion',
-    body: 'Photorealistic renders, abstract motion sequences, and immersive 3D worlds built for screen and beyond.',
-    keywords: ['Cinema4D', 'Blender', 'After Effects'],
+    title: 'Graphic Design',
+    body: 'High-impact design from event posters to full web mockups. Focused on converting, not just beauty.',
+    keywords: ['Pixel Precision', 'Multi-Format', 'Concept Driven'],
   },
   {
-    icon: Zap,
+    icon: Box,
     number: '03',
-    title: 'Digital Experiences',
-    body: 'Interactive web experiences, WebGL environments, and high-fidelity UI that blur the line between design and art.',
-    keywords: ['WebGL', 'React', 'Interaction Design'],
+    title: '3D Hard Surface Modeling',
+    body: 'Detailed highly realistic 3D renders of any hard surface object. Optimised for web use, product showcases and more.',
+    keywords: ['Photo-Realistic', 'Industrial Detail', 'Render Ready'],
   },
 ];
 
@@ -55,7 +55,7 @@ export default function Services() {
     setActiveIndex(newIndex);
   };
 
-  const handleDragEnd = (event, info) => {
+  const handleDragEnd = ( event, info) => {
     const threshold = 50;
     if (info.offset.y < -threshold) {
       moveToIndex(activeIndex + 1);
@@ -72,8 +72,6 @@ export default function Services() {
     >
       {/* Bleed separator */}
       <BleedText text="SERVICES" align="left" />
-
-
 
       <div style={{ padding: '1rem clamp(0rem, 5vw, 0rem) 3rem', height: '100%' }}>
         {/* Header */}
@@ -95,7 +93,6 @@ export default function Services() {
 
         {/* Carousel Container */}
         <div className="relative w-full h-[600px] flex items-center justify-center select-none">
-
           <div className="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center">
             {SERVICES.map((s, i) => {
               const Icon = s.icon;
@@ -108,7 +105,6 @@ export default function Services() {
 
               const isActive = relativeIndex === 0;
               const isPrev = relativeIndex === -1;
-              const isNext = relativeIndex === 1;
 
               return (
                   <motion.div
@@ -135,8 +131,8 @@ export default function Services() {
                   >
                     <div className="flex flex-col items-center">
                       <div className="flex items-center gap-4 mb-8">
-                        <span className="font-display text-sm text-gold opacity-60">{s.number}</span>
-                        <Icon size={32} style={{ color: 'rgba(166,143,31,0.50)' }} />
+                        <span className="font-display text-sm text-gold opacity-100">{s.number}</span>
+                        <Icon size={32} style={{ color: 'rgba(166,143,31,1)' }} />
                       </div>
 
                       <h3
