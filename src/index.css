@@ -115,25 +115,3 @@ body {
   pointer-events: none;
   user-select: none;
 }
-
-/* ─── GOLD SHIMMER BUTTON ────────────────────────────────────────── */
-.btn-gold {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.75rem;
-  border: 1px solid #A68F1F;
-  color: #A68F1F;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.8rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  background: transparent;
-  transition: background 0.3s ease, color 0.3s ease;
-  cursor: pointer;
-}
-
-.btn-gold:hover {
-  background: #A68F1F;
-  color: #252618;
-}

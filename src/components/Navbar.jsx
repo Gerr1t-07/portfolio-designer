@@ -1,6 +1,7 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence, useSpring, useMotionValue } from 'framer-motion';
 import { ArrowUpRight, Menu, X } from 'lucide-react';
+import HoverFillButton from './sections/HoverFillButton';
 
 const links = [
   { label: 'Work', id: 'work', icon: '/WorkIcon.svg' },
@@ -8,35 +9,14 @@ const links = [
   { label: 'About', id: 'about', icon: '/AboutIcon.svg' },
 ];
 
-// SVG gooey filter — the metaball merge/separate effect
-// feGaussianBlur blurs the shapes, feColorMatrix threshold snaps them into sharp blobs.
-// When two blobs overlap, they merge into one connected fluid shape.
-// When pulled apart, the neck thins and snaps — exactly like the video.
-
 
 export default function Navbar({ scrollTo }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeIdx, setActiveIdx] = useState(null);
-  const [prevIdx, setPrevIdx] = useState(null);
   const [visible, setVisible] = useState(false);
   const [navReady, setNavReady] = useState(false);
   const navExpandedRef = useRef(false);
-
-  // CTA Button Hover State
-  const ctaBtnRef = useRef(null);
-  const [ctaHoverData, setCtaHoverData] = useState({ x: 0, y: 0, hover: false });
-
-  const handleCtaMouseEnter = (e) => {
-    if (!ctaBtnRef.current) return;
-    const rect = ctaBtnRef.current.getBoundingClientRect();
-    setCtaHoverData({ x: e.clientX - rect.left, y: e.clientY - rect.top, hover: true });
-  };
-
-  const handleCtaMouseLeave = (e) => {
-    if (!ctaBtnRef.current) return;
-    const rect = ctaBtnRef.current.getBoundingClientRect();
-    setCtaHoverData({ x: e.clientX - rect.left, y: e.clientY - rect.top, hover: false });
-  };
+  const [modalOpen, setModalOpen] = useState(false)
 
   // NEW: Collapsible navbar states
   const [isExpanded, setIsExpanded] = useState(false);
@@ -99,6 +79,11 @@ export default function Navbar({ scrollTo }) {
     }, 3000);
   };
 
+  useEffect(() => {
+    const handler = (e) => setModalOpen(e.detail.open)
+    window.addEventListener("contact-modal", handler)
+    return () => window.removeEventListener("contact-modal", handler)
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -188,14 +173,28 @@ export default function Navbar({ scrollTo }) {
 
   useEffect(() => () => clearHide(), []);
 
-  return (
-    <>
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
 
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)');
+    const handler = (e) => setIsDesktop(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+
+  return (
+    <div className="w-full flex items-center justify-center">
       <motion.header
         initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed top-4 z-50 flex justify-center w-full pointer-events-none px-4 md:px-6"
+        animate={modalOpen
+                ? { y: -120, opacity: 0 }        // shoots up and fades
+                : { y: 0, opacity: 1 }
+                }
+        transition={modalOpen
+                ? { duration: 0.4, ease: [0.4, 0, 0.2, 1] }
+                : { duration: 0.5, ease: [0.16, 1, 0.3, 1] }
+                }
+        className="fixed top-4 z-50 flex justify-center w-[90vw] md:w-full pointer-events-none px-4 md:px-6"
       >
         <div style={{ width: '100%', maxWidth: '860px', display: 'flex', justifyContent: 'center' }}>
           <motion.nav
@@ -222,7 +221,13 @@ export default function Navbar({ scrollTo }) {
           >
             {/* Logo — Always visible */}
             <motion.button
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              onClick={() => {
+                              if (isDesktop) {
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                              } else {
+                                setIsExpanded(true);
+                              }
+                            }}
               className="flex items-center justify-center p-1 shrink-0"
               animate={{
                 width: isExpanded ? 'auto' : '100%',
@@ -450,34 +455,12 @@ export default function Navbar({ scrollTo }) {
                     }}
                   >
                     <div className="hidden md:flex items-center">
-                      <motion.button
-                        ref={ctaBtnRef}
-                        onMouseEnter={handleCtaMouseEnter}
-                        onMouseLeave={handleCtaMouseLeave}
+                      <HoverFillButton
                         onClick={() => scrollTo('contact')}
-                        className="btn-gold rounded-full text-xs shrink-0 whitespace-nowrap relative overflow-hidden group transition-transform duration-300 hover:scale-[1.02] active:scale-[0.98]"
-                        style={{
-                          paddingLeft: '1.25rem', paddingRight: '1.25rem',
-                          paddingTop: '0.55rem', paddingBottom: '0.55rem',
-                          background: 'transparent',
-                        }}
+                        className="px-8 py-3 w-[180px] h-10 uppercase border"
                       >
-                        <span className="relative z-10 transition-colors duration-300 group-hover:text-bg">
-                          Get in Touch <ArrowUpRight size={12} className="inline ml-1" />
-                        </span>
-                        <motion.div
-                          className="absolute bg-gold rounded-full pointer-events-none"
-                          style={{
-                            width: '450px', height: '450px',
-                            translateX: '-50%', translateY: '-50%',
-                            left: ctaHoverData.x, top: ctaHoverData.y,
-                            zIndex: 0,
-                          }}
-                          initial={{ scale: 0 }}
-                          animate={{ scale: ctaHoverData.hover ? 1 : 0 }}
-                          transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
-                        />
-                      </motion.button>
+                        Get in Touch <ArrowUpRight size={12} className="inline ml-1" />
+                      </HoverFillButton>
                     </div>
 
                     <button
@@ -508,29 +491,29 @@ export default function Navbar({ scrollTo }) {
             className="glass-nav fixed inset-x-4 top-20 z-40 rounded-2xl border border-gold/45"
             style={{ padding: '1.5rem' }}
           >
-            <ul className="flex flex-col gap-4 w-[90%]">
+            <ul className="flex flex-col gap-4 w-[95%]">
               {links.map((l) => (
                 <li key={l.id}>
                   <button
                     onClick={() => { scrollTo(l.id); setMenuOpen(false); }}
-                    className="font-display w-full flex items-center gap-4 text-left text-base text-cream hover:text-gold tracking-[0.16em] uppercase transition-colors"
+                    className="font-display w-full flex items-center justify-end gap-4 text-right text-base text-cream hover:text-gold tracking-[0.16em] uppercase transition-colors"
                   >
-                    <img src={l.icon} alt={l.label} className="h-5 w-5 object-contain" style={{ filter: 'brightness(0) invert(1)' }} />
                     {l.label}
+                    <img src={l.icon} alt={l.label} className="h-5 w-5 object-contain" style={{ filter: 'brightness(0) invert(1)' }} />
                   </button>
                 </li>
               ))}
             </ul>
             <button
               onClick={() => { scrollTo('contact'); setMenuOpen(false); }}
-              className="btn-gold w-full justify-center rounded-full"
-              style={{ marginTop: '1rem'}}
+              className="flex items-center gap-2 h-10 border border-gold text-gold uppercase bg-transparent hover:bg-gold hover:text-bg active:scale-95 transition-all duration-300 ease-in-out select-none w-full justify-center rounded-full"
+              style={{ marginTop: '1.5rem'}}
             > 
               Get in Touch <ArrowUpRight size={13} />
             </button>
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </div>
   );
 }

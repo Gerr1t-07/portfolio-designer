@@ -1,31 +1,16 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import BleedText from '../BleedText';
+import HoverFillButton from './HoverFillButton';
 
 const STATS = [
-  { value: '18', label: 'Years Old' },
-  { value: 'Infinite', label: 'Ideas' },
-  { value: '1', label: 'Goal' },
+  { value: '18', label: 'Age' },
+  { value: 'Germany', label: 'Location' },
+  { value: '5+ Years', label: 'Creating since' },
 ];
 
 export default function About() {
   const containerRef = useRef(null);
-
-  // CTA Button Hover State
-  const ctaBtnRef = useRef(null);
-  const [ctaHoverData, setCtaHoverData] = useState({ x: 0, y: 0, hover: false });
-
-  const handleCtaMouseEnter = (e) => {
-    if (!ctaBtnRef.current) return;
-    const rect = ctaBtnRef.current.getBoundingClientRect();
-    setCtaHoverData({ x: e.clientX - rect.left, y: e.clientY - rect.top, hover: true });
-  };
-
-  const handleCtaMouseLeave = (e) => {
-    if (!ctaBtnRef.current) return;
-    const rect = ctaBtnRef.current.getBoundingClientRect();
-    setCtaHoverData({ x: e.clientX - rect.left, y: e.clientY - rect.top, hover: false });
-  };
 
   // Motion values for mouse position
   const mouseX = useMotionValue(0);
@@ -61,7 +46,7 @@ export default function About() {
     <section
       id="about"
       className="relative"
-      style={{ paddingBottom: '8rem' }}
+      style={{ paddingBottom: '4rem' }}
     >
       <BleedText text="ABOUT" align="right" />
 
@@ -126,16 +111,10 @@ export default function About() {
               }}
             />
             {/* Name overlay at bottom */}
-            <div
-              style={{
-                position: 'absolute',
-                bottom: '1.5rem',
-                left: '1.5rem',
-                zIndex: 5,
-              }}
+            <div className="absolute bottom-4 md:bottom-6 left-3 md:left-6 z-5"
             >
-              <p className="font-display text-xs tracking-widest drop-shadow-md text-cream">
-                CREATIVE DIRECTOR
+              <p className="font-display text-[0.7rem] md:text-xs tracking-widest drop-shadow-md text-cream">
+                GRAPHIC DESIGNER
               </p>
             </div>
           </div>
@@ -146,18 +125,18 @@ export default function About() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="glass-card absolute -bottom-8 right-4 lg:-right-8 px-6 py-4 rounded-xl"
+            className="glass-card absolute -bottom-8 -right-2 lg:right-24 rounded-xl"
             style={{ padding: '1rem' }}
           >
             {STATS.map((s, i) => (
-              <div key={s.label} className="flex items-center justify-between gap-4 mb-2 last:mb-0 font-display text-[1rem] text-gold" style={{ paddingBottom: i === STATS.length - 1 ? '0' : '0.75rem' }}>
-                <span>
-                  {s.value}
-                </span>
+              <div key={s.label} className="flex items-center justify-between gap-4 mb-2 last:mb-0 font-display text-xs md:text-[1rem] text-gold" style={{ paddingBottom: i === STATS.length - 1 ? '0' : '0.75rem' }}>
                 <span
-                  className="font-sans-body text-xs pb-0.5 opacity-50 text-cream"
+                  className="font-sans-body text-[0.7rem] md:text-xs pb-0.5 opacity-80 text-cream"
                 >
                   {s.label}
+                </span>
+                <span>
+                  {s.value}
                 </span>
               </div>
             ))}
@@ -170,56 +149,34 @@ export default function About() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col gap-7 pt-8 lg:pt-0"
+          className="flex flex-col gap-7 pt-8 lg:pt-0 text-left"
         >
           <p
             className="font-editorial text-cream"
             style={{
-              fontSize: 'clamp(1.4rem, 3vw, 2.2rem)',
-              fontStyle: 'italic',
-              lineHeight: 1.4,
+              fontSize: 'clamp(2.2rem, 3vw, 3.5rem)',
+              lineHeight: 1.1,
             }}
           >
-            "I believe design is the act of <span style={{ color: '#A68F1F' }}>translating feeling</span> into form — and that the best work lives at the edge of discomfort."
+            <span className='text-gold'>Graphic Designer</span> who builds brands worth remembering.
           </p>
 
           <p
             className="font-sans-body text-sm leading-relaxed"
             style={{ color: 'rgba(242,230,223,0.52)' }}
           >
-            Based between Berlin and Lisbon, I'm a multidisciplinary creative director working at the intersection of brand identity, motion design, and digital experience. My work is driven by restraint, atmosphere, and intention.
+            Located in Germany, I create visual identities, graphics, and photo-realistic<br />3D assets. I work with start-ups, artists, and anyone who needs a visual presence that actually means something.<br/><br/>
+            My work is driven by emotion and atmosphere. Every project has a concept behind it, and execution that reflects it. Whether that's a brand identity<br />built from scratch, a poster that stops someone mid-scroll, or a<br />3D render with the weight of a real object.<br/><br/>
+            I'm young, focused, and constantly pushing the work forward.<br />There's no project too early-stage or too ambitious."
           </p>
 
-          <p
-            className="font-sans-body text-sm leading-relaxed"
-            style={{ color: 'rgba(242,230,223,0.52)' }}
-          >
-            I've collaborated with studios, labels, and fashion houses across Europe and North America — always asking the same question: what does this feel like?
-          </p>
-
-          <div className="flex items-end justify-end gap-4 ml-auto h-12 md:h-16">
-            <motion.button
-              ref={ctaBtnRef}
-              onMouseEnter={handleCtaMouseEnter}
-              onMouseLeave={handleCtaMouseLeave}
+          <div className="flex items-end justify-end md:justify-start gap-4 ml-auto h-12 md:h-16">
+            <HoverFillButton
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="btn-gold rounded-full text-xs shrink-0 whitespace-nowrap relative overflow-hidden group transition-transform duration-300 hover:scale-[1.02] active:scale-[0.98] px-5 py-3 bg-transparent"
+              className="px-8 py-3 w-[180px] h-12 border"
             >
-              <span className="relative z-10 transition-colors duration-300 group-hover:text-bg">
                 Start a Project
-              </span>
-
-              <motion.div
-                className={'absolute bg-gold rounded-full pointer-events-none w-[450px] h-[450px] -translate-x-[50%] -translate-y-[50%] z-0'}
-                style={{
-                  left: ctaHoverData.x,
-                  top: ctaHoverData.y,
-                }}
-                initial={{ scale: 0 }}
-                animate={{ scale: ctaHoverData.hover ? 1 : 0 }}
-                transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
-              />
-            </motion.button>
+            </HoverFillButton>
           </div>
         </motion.div>
       </div>

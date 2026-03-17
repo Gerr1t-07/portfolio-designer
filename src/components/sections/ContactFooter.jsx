@@ -1,13 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Mail } from 'lucide-react';
-import { useRef, useState } from 'react';
 import TikTok from '@/assets/icons/TikTok Icon.svg?react';
 import Instagram from '@/assets/icons/Instagram Icon.svg?react';
 import Dribbble from '@/assets/icons/Dribbble Icon.svg?react';
 import Fiverr from '@/assets/icons/Fiverr Icons.svg?react';
 import Twitter from '@/assets/icons/X Icons.svg?react';
 import LinkedIn from '@/assets/icons/LinkedIn Icon.svg?react';
+import ContactButton from './ContactButton';
 
 
 const SOCIALS = [
@@ -20,21 +20,6 @@ const SOCIALS = [
 ];
 
 export default function ContactFooter() {
-  // CTA Button Hover State
-  const ctaBtnRef = useRef(null);
-  const [ctaHoverData, setCtaHoverData] = useState({ x: 0, y: 0, hover: false });
-
-  const handleCtaMouseEnter = (e) => {
-    if (!ctaBtnRef.current) return;
-    const rect = ctaBtnRef.current.getBoundingClientRect();
-    setCtaHoverData({ x: e.clientX - rect.left, y: e.clientY - rect.top, hover: true });
-  };
-
-  const handleCtaMouseLeave = (e) => {
-    if (!ctaBtnRef.current) return;
-    const rect = ctaBtnRef.current.getBoundingClientRect();
-    setCtaHoverData({ x: e.clientX - rect.left, y: e.clientY - rect.top, hover: false });
-  };
   return (
     <section
       id="contact"
@@ -77,7 +62,7 @@ export default function ContactFooter() {
           transition={{ duration: 0.6 }}
           className="font-sans-body tracking-[0.28em] text-xs uppercase select-none text-gold"
         >
-          Let's collaborate
+          Let's Collaborate and
         </motion.p>
 
         {/* Main CTA headline */}
@@ -86,54 +71,16 @@ export default function ContactFooter() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="font-display leading-none select-none text-4xl md:text-7xl lg:9xl text-cream"
+          className="font-display leading-none select-none text-6xl md:text-8xl lg:text-[9rem] text-cream"
           style={{
             letterSpacing: '-0.025em',
           }}
         >
-          LET'S CREATE
+            CREATE
         </motion.h2>
 
         {/* Email button */}
-        <a href="mailto:sachergerrit@gmail.com" className="flex items-center gap-4 ml-auto">
-          <motion.button
-            ref={ctaBtnRef}
-            onMouseEnter={handleCtaMouseEnter}
-            onMouseLeave={handleCtaMouseLeave}
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="btn-gold rounded-full text-xs shrink-0 whitespace-nowrap relative overflow-hidden group transition-transform duration-300 hover:scale-[1.02] active:scale-[0.98]"
-            style={{
-              paddingLeft: '2rem', paddingRight: '2rem', paddingTop: '1rem', paddingBottom: '1rem',
-              background: 'transparent'
-            }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-          >
-            <span className="relative z-10 transition-colors flex gap-2 duration-300 group-hover:text-bg">
-              <Mail size={16} />
-              sachergerrit@gmail.com
-              <ArrowUpRight size={15} />
-            </span>
-
-            <motion.div
-              className="absolute bg-gold rounded-full pointer-events-none"
-              style={{
-                width: '700px',
-                height: '700px',
-                translateX: '-50%',
-                translateY: '-50%',
-                left: ctaHoverData.x,
-                top: ctaHoverData.y,
-                zIndex: 0,
-              }}
-              initial={{ scale: 0 }}
-              animate={{ scale: ctaHoverData.hover ? 1 : 0 }}
-              transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
-            />
-          </motion.button>
-        </a>
+          <ContactButton firstIcon={Mail} lastIcon={ArrowUpRight} text={`sachergerrit@gmail.com`} className="px-8 py-3 w-[300px] h-12" />
 
         {/* Socials */}
         <motion.div
