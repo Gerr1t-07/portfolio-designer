@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
-import HoverFillButton from './HoverFillButton';
+import HoverFillButton from '../HoverFillButton';
 
 const containerVar = {
   hidden: {},

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence, useSpring, useMotionValue } from 'framer-motion';
 import { ArrowUpRight, Menu, X } from 'lucide-react';
-import HoverFillButton from './sections/HoverFillButton';
+import HoverFillButton from './HoverFillButton';
 
 const links = [
   { label: 'Work', id: 'work', icon: '/WorkIcon.svg' },

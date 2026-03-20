@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Signpost, MousePointer2, Box } from 'lucide-react';
 import BleedText from '../BleedText';
+import { useErrorHandler } from '../../hooks/useErrorHandler';
+import { ErrorCategory, ErrorSeverity } from '../../lib/errorHandler';
 
 const SERVICES = [
   {
@@ -31,38 +33,103 @@ export default function Services() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [tooltipVisible, setTooltipVisible] = useState(false);
   const timerRef = useRef(null);
+  const { withErrorHandling } = useErrorHandler();
 
   useEffect(() => {
+    const handleScroll = withErrorHandling(
+      () => {
+        setTooltipVisible(true);
+        if (timerRef.current) {
+          clearTimeout(timerRef.current);
+        }
+        timerRef.current = setTimeout(() => {
+          setTooltipVisible(false);
+        }, 1000);
+      },
+      {
+        category: ErrorCategory.SCROLL,
+        severity: ErrorSeverity.LOW,
+        context: { handler: 'handleScroll' },
+      }
+    );
+
     window.addEventListener('scroll', handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('scroll', handleScroll);
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
+  }, [withErrorHandling]);
+
+  const moveToIndex = withErrorHandling(
+    (index) => {
+      try {
+        // Validate input
+        if (typeof index !== 'number') {
+          throw new Error('moveToIndex: index must be a number');
+        }
+        
+        // Handling looping
+        const count = SERVICES.length;
+        const newIndex = (index + count) % count;
+        setActiveIndex(newIndex);
+      } catch (err) {
+        throw err;
+      }
+    },
+    {
+      category: ErrorCategory.RUNTIME_ERROR,
+      severity: ErrorSeverity.LOW,
+      context: { handler: 'moveToIndex' },
     }
-  }, [])
+  );
 
-  const handleScroll = () => {
-    setTooltipVisible(true)
-    clearTimeout(timerRef.current)
-
-    timerRef.current = setTimeout(() => { setTooltipVisible(false) }, 1000)
-
-  }
-
-  const moveToIndex = (index) => {
-    // Handling looping
-    const count = SERVICES.length;
-    const newIndex = (index + count) % count;
-    setActiveIndex(newIndex);
-  };
-
-  const handleDragEnd = ( event, info) => {
-    const threshold = 50;
-    if (info.offset.y < -threshold) {
-      moveToIndex(activeIndex + 1);
-    } else if (info.offset.y > threshold) {
-      moveToIndex(activeIndex - 1);
+  const handleDragEnd = withErrorHandling(
+    (event, info) => {
+      try {
+        if (!info || typeof info.offset === 'undefined') {
+          throw new Error('handleDragEnd: Invalid drag info object');
+        }
+        
+        const threshold = 50;
+        if (info.offset.y < -threshold) {
+          moveToIndex(activeIndex + 1);
+        } else if (info.offset.y > threshold) {
+          moveToIndex(activeIndex - 1);
+        }
+      } catch (err) {
+        throw err;
+      }
+    },
+    {
+      category: ErrorCategory.RUNTIME_ERROR,
+      severity: ErrorSeverity.LOW,
+      context: { handler: 'handleDragEnd' },
     }
-  };
+  );
+
+  const handleCardClick = withErrorHandling(
+    (index) => {
+      try {
+        if (typeof index !== 'number') {
+          throw new Error('handleCardClick: index must be a number');
+        }
+        // Only trigger if not already active
+        if (activeIndex !== index) {
+          moveToIndex(index);
+        }
+      } catch (err) {
+        throw err;
+      }
+    },
+    {
+      category: ErrorCategory.RUNTIME_ERROR,
+      severity: ErrorSeverity.LOW,
+      context: { handler: 'handleCardClick' },
+    }
+  );
 
   return (
     <section
@@ -127,7 +194,7 @@ export default function Services() {
                     drag="y"
                     dragConstraints={{ top: 0, bottom: 0 }}
                     onDragEnd={handleDragEnd}
-                    onClick={() => !isActive && moveToIndex(i)}
+                    onClick={() => !isActive && handleCardClick(i)}
                   >
                     <div className="flex flex-col items-center">
                       <div className="flex items-center gap-4 mb-8">
@@ -167,12 +234,26 @@ export default function Services() {
           </div>
 
           {/* Controls Overlay */}
-          <div className="absolute h-[50%] w-screen top-0" onClick={() => (moveToIndex(activeIndex - 1))}>
+          <div 
+            className="absolute h-[50%] w-screen top-0" 
+            onClick={withErrorHandling(() => moveToIndex(activeIndex - 1), {
+              category: ErrorCategory.RUNTIME_ERROR,
+              severity: ErrorSeverity.LOW,
+              context: { handler: 'previousControl' },
+            })}
+          >
             <div className="flex w-full h-full items-start justify-center md:justify-end text-center text-gold md:text-gold/50" style={{ padding: "5rem", opacity: tooltipVisible ? 1 : 0, transition: "opacity 0.5s ease" }}>
               click for previous ↑
             </div>
           </div>
-          <div className="absolute h-[50%] w-screen bottom-0" onClick={() => (moveToIndex(activeIndex + 1))}>
+          <div 
+            className="absolute h-[50%] w-screen bottom-0" 
+            onClick={withErrorHandling(() => moveToIndex(activeIndex + 1), {
+              category: ErrorCategory.RUNTIME_ERROR,
+              severity: ErrorSeverity.LOW,
+              context: { handler: 'nextControl' },
+            })}
+          >
             <div className='flex w-full h-full items-end justify-center md:justify-end text-center text-gold md:text-gold/50' style={{ padding: "5rem", opacity: tooltipVisible ? 1 : 0, transition: "opacity 0.5s ease" }}>
               click for next ↓
             </div>

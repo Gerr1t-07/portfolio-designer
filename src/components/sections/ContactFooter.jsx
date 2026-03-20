@@ -7,7 +7,7 @@ import Dribbble from '@/assets/icons/Dribbble Icon.svg?react';
 import Fiverr from '@/assets/icons/Fiverr Icons.svg?react';
 import Twitter from '@/assets/icons/X Icons.svg?react';
 import LinkedIn from '@/assets/icons/LinkedIn Icon.svg?react';
-import ContactButton from './ContactButton';
+import ContactButton from '../ContactButton';
 
 
 const SOCIALS = [
