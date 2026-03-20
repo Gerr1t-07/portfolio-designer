@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import BleedText from '../BleedText';
-import HoverFillButton from './HoverFillButton';
+import HoverFillButton from '../HoverFillButton';
 
 const STATS = [
   { value: '18', label: 'Age' },

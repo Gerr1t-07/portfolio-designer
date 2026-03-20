@@ -1,60 +1,79 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motion';
-import { ArrowLeft, ExternalLink, ChevronDown } from 'lucide-react';
+import { ArrowLeft, ChevronDown } from 'lucide-react';
 import BleedText from '../BleedText';
-import HoverFillButton from './HoverFillButton';
+import dodgeImg from '@/assets/works/Dodge_Poster.png'
+import mjmBranding from '@/assets/works/MJM_BrandingBoard.png'
+import embersBranding from '@/assets/works/Oak&Embers_BrandingBoard.png'
+import rdr2Poster from '@/assets/works/RDR2_Poster.png'
+import jokerPoster from '@/assets/works/Joker_Poster.png'
 
 // ─── Project data ─────────────────────────────────────────────────────────────
 const WORKS = [
   {
     id: 1,
-    title: 'THE VOID',
-    subtitle: 'Brand Identity · 2024',
-    tags: ['Direction', 'Motion'],
-    bg: 'linear-gradient(135deg, #1e280f 0%, #344021 40%, #2d3a1a 100%)',
-    accent: '#A68F1F',
-    description: 'A bold brand identity project for a modern art gallery, combining minimalist design with powerful typography to create a distinctive visual language that pushes creative boundaries.',
-    tech: ['Figma', 'After Effects', 'Blender', 'Illustrator'],
+    title: 'MJM',
+    subtitle: 'Brand Identity · 2025',
+    tags: ['Branding', 'Fashion', 'Clean'],
+    bg: 'linear-gradient(135deg, #1a1e0e 0%, #252618 50%, #344021 100%)',
+    accent: '#FFC6FC',
+    description: 'A full brand creation based on a hypothetical client who wants to revamp the fashion industry with an app that helps people find and define their style by simply swiping through a feed.',
+    tech: [ 'Affinity', 'Figma', 'Mockup-Designs.com', 'Nano Banana Pro', 'ChatGPT' ],
+    img: mjmBranding,
+    gallery: [ mjmBranding, jokerPoster, mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding ],
+    titleAccent: '#2a2a2a',
   },
   {
     id: 2,
-    title: 'LIMINAL',
-    subtitle: 'Editorial Campaign · 2024',
-    tags: ['Photography', 'Art Direction'],
-    bg: 'linear-gradient(135deg, #1a1e0e 0%, #252618 50%, #344021 100%)',
-    accent: '#8B7B1A',
-    description: 'An editorial campaign exploring the spaces between reality and imagination. Shot on location across three continents, the series captures moments of transition and transformation.',
-    tech: ['Capture One', 'Photoshop', 'InDesign', 'Premiere Pro'],
+    title: 'Oak & Embers',
+    subtitle: 'Brand Identity · 2023',
+    tags: ['Branding', 'Mockups', 'Local Store'],
+    bg: 'linear-gradient(135deg, #2d3a1a 0%, #1e280f 60%, #252618 100%)',
+    accent: '#C8AA8D',
+    description: 'An immersive digital experience that blends cutting-edge WebGL technology with thoughtful UX design. The project transforms complex data into beautiful, interactive 3D visualizations.',
+    tech: [ 'Affinity', 'Figma', 'Mockup-Designs.com', 'Nano Banana Pro' ],
+    img: embersBranding,
+    gallery: [ mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding ],
+    titleAccent: '#5C3415'
   },
   {
     id: 3,
-    title: 'OBSIDIAN',
-    subtitle: 'Digital Experience · 2023',
-    tags: ['UI/UX', '3D', 'WebGL'],
+    title: 'RDR2 Poster',
+    subtitle: 'Poster Design · 2026',
+    tags: ['Gaming', 'Story', 'Graphic Design'],
     bg: 'linear-gradient(135deg, #2d3a1a 0%, #1e280f 60%, #252618 100%)',
-    accent: '#C4A825',
-    description: 'An immersive digital experience that blends cutting-edge WebGL technology with thoughtful UX design. The project transforms complex data into beautiful, interactive 3D visualizations.',
-    tech: ['React', 'Three.js', 'GLSL', 'Figma'],
+    accent: '#D41F26',
+    description: 'Definitely the best graphic design study so far, capturing not simply a "Poster of a game" but it holds the deepest scenes and aspects of the game Read Dead Redemption 2. This delivers emotional weight as well as visually pleasing aesthetics',
+    tech: [ 'Affinity', 'Figma', 'Mockup-Designs.com', 'Nano Banana Pro' ],
+    img: rdr2Poster,
+    gallery: [ mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding ],
+    titleAccent: '#FBA919'
   },
   {
     id: 4,
-    title: 'EPOCH',
-    subtitle: 'Film Title Sequence · 2023',
-    tags: ['Motion', 'Typography'],
+    title: 'Joker Poster',
+    subtitle: 'Poster Design · 2026',
+    tags: ['Movie', 'Golden Ratio', 'Graphic Design'],
     bg: 'linear-gradient(135deg, #344021 0%, #1a1e0e 80%, #252618 100%)',
-    accent: '#A68F1F',
-    description: 'A cinematic title sequence for an award-winning documentary. The design merges archival textures with contemporary motion graphics to create a visual narrative that spans decades.',
-    tech: ['After Effects', 'Cinema 4D', 'Premiere Pro', 'Audition'],
+    accent: '#A91D2C',
+    description: 'A graphic design study based on a golden ratio layout. This poster presents the fabulous movie "Joker" in a rough and textured way, as well as crediting the actor who played an awesome role: Joaquin Phoenix.',
+    tech: ['Affinity', 'Figma', 'Mockup-Designs.com', 'google.com'],
+    img: jokerPoster,
+    gallery: [ mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding ],
+    titleAccent: '#27841F'
   },
   {
     id: 5,
-    title: 'SOLSTICE',
-    subtitle: 'Photography Series · 2022',
-    tags: ['Photography', 'Editorial'],
+    title: 'DODGE',
+    subtitle: 'Poster Design · 2026',
+    tags: ['Movie', 'Minimal'],
     bg: 'linear-gradient(135deg, #2a3510 0%, #1e280f 60%, #344021 100%)',
-    accent: '#8A9A5B',
-    description: 'A contemplative photography series documenting the changing light throughout the solstice. Each image captures the subtle interplay between natural light and architectural form.',
-    tech: ['Phase One', 'Capture One', 'Photoshop', 'Lightroom'],
+    accent: '#0981d1',
+    description: 'A bold yet minimal movie poster design, inspired by a hypothetical movie called "Dodge". The design process was fairly simple after generating a fitting background image was successful.',
+    tech: [ 'Affinity', 'Figma', 'Mockup-Designs.com', 'Nano Banana Pro' ],
+    img: dodgeImg,
+    gallery: [ mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding ],
+    titleAccent: '#ffffff',
   },
 ];
 
@@ -63,553 +82,71 @@ const ARCHIVE = [
     id: 6,
     title: 'Posters',
     subtitle: 'Graphic Design · 2024',
-    tags: ['Print', '2024'],
     bg: 'linear-gradient(160deg, #344021, #252618)',
-    accent: '#A68F1F',
-    description: 'A series of experimental posters exploring digital decay and generative art. The designs combine glitch aesthetics with classic Swiss typography principles.',
-    tech: ['Photoshop', 'Processing', 'Illustrator'],
     image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=800&auto=format&fit=crop',
   },
   {
     id: 7,
     title: 'Logos',
     subtitle: 'Brand Identity · 2023',
-    tags: ['Branding', '2023'],
     bg: 'linear-gradient(160deg, #1a1e0e, #2d3a1a)',
-    accent: '#8B7B1A',
-    description: 'A collection of logos created for various boutique brands, pushing the boundaries of traditional mark-making.',
-    tech: ['Illustrator', 'Figma'],
     image: 'https://images.unsplash.com/photo-1572044162444-ad60f128bdea?q=80&w=800&auto=format&fit=crop',
   },
   {
     id: 8,
     title: '3D Models',
     subtitle: 'Product Visualization · 2023',
-    tags: ['3D', '2023'],
     bg: 'linear-gradient(160deg, #252618, #344021)',
-    accent: '#C4A825',
-    description: 'Hyper-realistic product visualizations for consumer electronics with a focus on tactile material studies.',
-    tech: ['Blender', 'Substance Painter'],
     image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=800&auto=format&fit=crop',
   },
   {
     id: 9,
     title: 'Editorial',
     subtitle: 'Publication Design · 2022',
-    tags: ['Editorial', '2022'],
     bg: 'linear-gradient(160deg, #1e280f, #344021)',
-    accent: '#8A9A5B',
-    description: 'Layout and art direction for a limited-run independent architecture magazine focused on Brutalist structures.',
-    tech: ['InDesign', 'Photoshop'],
     image: 'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?q=80&w=800&auto=format&fit=crop',
   },
   {
     id: 10,
     title: 'Packaging',
     subtitle: 'Physical Goods · 2023',
-    tags: ['Print', '2023'],
     bg: 'linear-gradient(160deg, #2a3510, #1e280f)',
-    accent: '#A68F1F',
-    description: 'Sustainable packaging for a specialty coffee roaster using 100% biodegradable materials and ink-saving typography.',
-    tech: ['Illustrator', 'Dimension'],
     image: 'https://images.unsplash.com/photo-1554774853-aae0a22c8aa4?q=80&w=800&auto=format&fit=crop',
   },
   {
     id: 11,
     title: 'Exhibition',
     subtitle: 'Spatial Design · 2022',
-    tags: ['Spatial', '2022'],
     bg: 'linear-gradient(160deg, #1e280f, #252618)',
-    accent: '#C4A825',
-    description: 'Gallery pathway design and wayfinding for a contemporary art exhibition across an immersive audio-visual journey.',
-    tech: ['SketchUp', 'AutoCAD'],
     image: 'https://images.unsplash.com/photo-1518998053901-5348d3961a04?q=80&w=800&auto=format&fit=crop',
   },
   {
     id: 12,
     title: 'Typeface',
     subtitle: 'Type Design · 2024',
-    tags: ['Typography', '2024'],
     bg: 'linear-gradient(160deg, #344021, #1a1e0e)',
-    accent: '#D4A820',
-    description: 'A custom display typeface built for editorial use, balancing geometric precision with humanist warmth.',
-    tech: ['Glyphs', 'Illustrator'],
     image: 'https://images.unsplash.com/photo-1524234107056-1c1f48f64ab8?q=80&w=800&auto=format&fit=crop',
   },
   {
     id: 13,
     title: 'Motion Reel',
     subtitle: 'Motion Graphics · 2023',
-    tags: ['Motion', '2023'],
     bg: 'linear-gradient(160deg, #252618, #1e280f)',
-    accent: '#A68F1F',
-    description: 'A curated motion reel spanning brand animations, kinetic typography, and abstract visual experiments.',
-    tech: ['After Effects', 'Cinema 4D'],
     image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=800&auto=format&fit=crop',
   },
   {
     id: 14,
     title: 'App UI',
     subtitle: 'Interface Design · 2024',
-    tags: ['UI/UX', '2024'],
     bg: 'linear-gradient(160deg, #1a1e0e, #344021)',
-    accent: '#8B7B1A',
-    description: 'Full UI system for a wellness app — dark mode first, with a focus on calm interactions and spatial hierarchy.',
-    tech: ['Figma', 'Principle'],
     image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=800&auto=format&fit=crop',
   },
   {
     id: 15,
     title: 'Merch',
     subtitle: 'Product Design · 2023',
-    tags: ['Print', '2023'],
     bg: 'linear-gradient(160deg, #344021, #252618)',
-    accent: '#C4A825',
-    description: 'Merchandise line for an independent music artist — apparel, accessories, and limited-run collectibles.',
-    tech: ['Illustrator', 'Photoshop'],
     image: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 16,
-    title: 'Wayfinding',
-    subtitle: 'Signage System · 2022',
-    tags: ['Spatial', '2022'],
-    bg: 'linear-gradient(160deg, #1e280f, #2d3a1a)',
-    accent: '#8A9A5B',
-    description: 'Environmental signage and wayfinding system for a multi-floor creative campus in Berlin.',
-    tech: ['Illustrator', 'SketchUp', 'InDesign'],
-    image: 'https://images.unsplash.com/photo-1524234107056-1c1f48f64ab8?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 17,
-    title: 'Album Art',
-    subtitle: 'Music Packaging · 2024',
-    tags: ['Art Direction', '2024'],
-    bg: 'linear-gradient(160deg, #252618, #344021)',
-    accent: '#A68F1F',
-    description: 'Album artwork and full packaging design for an ambient electronic release — gatefold vinyl with insert booklet.',
-    tech: ['Photoshop', 'Illustrator', 'InDesign'],
-    image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 18,
-    title: 'Iconography',
-    subtitle: 'Icon System · 2023',
-    tags: ['UI/UX', '2023'],
-    bg: 'linear-gradient(160deg, #1a1e0e, #252618)',
-    accent: '#C4A825',
-    description: 'A 200-icon system for a SaaS product, built on a strict 24px grid with two weight variants.',
-    tech: ['Figma', 'Illustrator'],
-    image: 'https://images.unsplash.com/photo-1558655146-364adaf1fcc9?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 19,
-    title: 'Book Cover',
-    subtitle: 'Publishing · 2022',
-    tags: ['Editorial', '2022'],
-    bg: 'linear-gradient(160deg, #344021, #1e280f)',
-    accent: '#8B7B1A',
-    description: 'Cover design for a debut literary fiction novel — typographic-led with a hand-rendered texture layer.',
-    tech: ['Photoshop', 'Illustrator'],
-    image: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 20,
-    title: 'Brand System',
-    subtitle: 'Identity Design · 2024',
-    tags: ['Branding', '2024'],
-    bg: 'linear-gradient(160deg, #1e280f, #252618)',
-    accent: '#D4A820',
-    description: 'Complete brand identity system for a boutique architecture firm — mark, color, type, and motion guidelines.',
-    tech: ['Figma', 'Illustrator', 'After Effects'],
-    image: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 21,
-    title: 'Zine',
-    subtitle: 'Self-Published · 2023',
-    tags: ['Editorial', '2023'],
-    bg: 'linear-gradient(160deg, #2d3a1a, #252618)',
-    accent: '#8A9A5B',
-    description: 'A self-published zine exploring urban texture photography paired with found poetry and risograph printing.',
-    tech: ['InDesign', 'Photoshop', 'Lightroom'],
-    image: 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 22,
-    title: 'Dashboard',
-    subtitle: 'Data Visualization · 2024',
-    tags: ['UI/UX', '2024'],
-    bg: 'linear-gradient(160deg, #1a1e0e, #344021)',
-    accent: '#C4A825',
-    description: 'Analytics dashboard for a fintech startup — complex data presented through clean, scannable visual hierarchy.',
-    tech: ['Figma', 'D3.js'],
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 23,
-    title: 'Sculpture',
-    subtitle: '3D Render · 2023',
-    tags: ['3D', '2023'],
-    bg: 'linear-gradient(160deg, #252618, #1e280f)',
-    accent: '#A68F1F',
-    description: 'Abstract digital sculptures rendered with subsurface scattering and physical-based lighting in Blender.',
-    tech: ['Blender', 'Cycles'],
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 24,
-    title: 'Social Kit',
-    subtitle: 'Content Design · 2024',
-    tags: ['Branding', '2024'],
-    bg: 'linear-gradient(160deg, #344021, #2d3a1a)',
-    accent: '#8B7B1A',
-    description: 'Full social media kit for a fashion brand — templates, story formats, and motion loops for Instagram and TikTok.',
-    tech: ['Figma', 'After Effects'],
-    image: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 25,
-    title: 'Illustration',
-    subtitle: 'Digital Art · 2022',
-    tags: ['Art Direction', '2022'],
-    bg: 'linear-gradient(160deg, #1e280f, #344021)',
-    accent: '#D4A820',
-    description: 'A series of editorial illustrations for a long-read digital magazine covering technology and culture.',
-    tech: ['Procreate', 'Photoshop'],
-    image: 'https://images.unsplash.com/photo-1618004912476-29818d81ae2e?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 26,
-    title: 'Title Sequence',
-    subtitle: 'Motion Design · 2023',
-    tags: ['Motion', '2023'],
-    bg: 'linear-gradient(160deg, #252618, #344021)',
-    accent: '#A68F1F',
-    description: 'Opening title sequence for a short film — hand-drawn frames composited with live footage and sound design.',
-    tech: ['After Effects', 'Premiere Pro'],
-    image: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 27,
-    title: 'Stationery',
-    subtitle: 'Print Design · 2023',
-    tags: ['Print', '2023'],
-    bg: 'linear-gradient(160deg, #1a1e0e, #2d3a1a)',
-    accent: '#8A9A5B',
-    description: 'Premium stationery suite for a law firm — letterhead, business cards, and envelopes with foil detail.',
-    tech: ['Illustrator', 'InDesign'],
-    image: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 28,
-    title: 'AR Filter',
-    subtitle: 'Augmented Reality · 2024',
-    tags: ['Motion', '2024'],
-    bg: 'linear-gradient(160deg, #344021, #1a1e0e)',
-    accent: '#C4A825',
-    description: 'Instagram AR filter for a cosmetics brand launch — face-tracked with real-time particle and glow effects.',
-    tech: ['Spark AR', 'Blender'],
-    image: 'https://images.unsplash.com/photo-1626379953822-baec19c3accd?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 29,
-    title: 'Map Design',
-    subtitle: 'Cartography · 2022',
-    tags: ['Editorial', '2022'],
-    bg: 'linear-gradient(160deg, #1e280f, #252618)',
-    accent: '#8B7B1A',
-    description: 'Custom illustrated city map for a boutique hotel, screen-printed on linen as a guest amenity.',
-    tech: ['Illustrator', 'Procreate'],
-    image: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 30,
-    title: 'NFT Series',
-    subtitle: 'Generative Art · 2022',
-    tags: ['Digital Art', '2022'],
-    bg: 'linear-gradient(160deg, #252618, #1a1e0e)',
-    accent: '#D4A820',
-    description: 'A 100-piece generative art series exploring fractal geometry and color theory, minted on-chain.',
-    tech: ['Processing', 'Photoshop'],
-    image: 'https://images.unsplash.com/photo-1634986666676-ec8fd927c23d?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 31,
-    title: 'Web Design',
-    subtitle: 'Frontend · 2024',
-    tags: ['UI/UX', '2024'],
-    bg: 'linear-gradient(160deg, #344021, #252618)',
-    accent: '#A68F1F',
-    description: 'Portfolio website for a Berlin-based photographer — scroll-driven animations, full-bleed image galleries.',
-    tech: ['Figma', 'React', 'Framer Motion'],
-    image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 32,
-    title: 'Textile',
-    subtitle: 'Pattern Design · 2023',
-    tags: ['Print', '2023'],
-    bg: 'linear-gradient(160deg, #1e280f, #344021)',
-    accent: '#8A9A5B',
-    description: 'Repeating pattern collection for a sustainable fashion label — digitally printed on organic cotton.',
-    tech: ['Illustrator', 'Photoshop'],
-    image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 33,
-    title: 'Concept Car',
-    subtitle: '3D Visualization · 2023',
-    tags: ['3D', '2023'],
-    bg: 'linear-gradient(160deg, #1a1e0e, #252618)',
-    accent: '#C4A825',
-    description: 'Concept vehicle rendered in Blender with photorealistic studio lighting and custom paint shaders.',
-    tech: ['Blender', 'Substance Painter'],
-    image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 34,
-    title: 'Food Branding',
-    subtitle: 'Identity Design · 2024',
-    tags: ['Branding', '2024'],
-    bg: 'linear-gradient(160deg, #2d3a1a, #1e280f)',
-    accent: '#A68F1F',
-    description: 'Brand identity for an artisan bakery — warm palette, hand-lettered mark, and full print collateral.',
-    tech: ['Illustrator', 'Procreate', 'InDesign'],
-    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 35,
-    title: 'UX Audit',
-    subtitle: 'Product Design · 2022',
-    tags: ['UI/UX', '2022'],
-    bg: 'linear-gradient(160deg, #344021, #1a1e0e)',
-    accent: '#8B7B1A',
-    description: 'End-to-end UX audit and redesign for an e-commerce platform — research, wireframes, and high-fidelity UI.',
-    tech: ['Figma', 'Maze', 'Notion'],
-    image: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 36,
-    title: 'Architecture',
-    subtitle: '3D Render · 2023',
-    tags: ['3D', '2023'],
-    bg: 'linear-gradient(160deg, #252618, #2d3a1a)',
-    accent: '#D4A820',
-    description: 'Architectural visualizations for an unbuilt residential project — exterior and interior hero shots.',
-    tech: ['Blender', 'Lumion', 'Photoshop'],
-    image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 37,
-    title: 'Event Identity',
-    subtitle: 'Brand Identity · 2024',
-    tags: ['Branding', '2024'],
-    bg: 'linear-gradient(160deg, #1e280f, #344021)',
-    accent: '#A68F1F',
-    description: 'Complete visual identity for an annual design conference — from badge to stage backdrop to digital assets.',
-    tech: ['Illustrator', 'After Effects', 'InDesign'],
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 38,
-    title: 'Mural',
-    subtitle: 'Large Format · 2022',
-    tags: ['Art Direction', '2022'],
-    bg: 'linear-gradient(160deg, #1a1e0e, #1e280f)',
-    accent: '#8A9A5B',
-    description: 'Design and production of a 40m² exterior mural for a tech campus in Hamburg.',
-    tech: ['Procreate', 'Illustrator'],
-    image: 'https://images.unsplash.com/photo-1524234107056-1c1f48f64ab8?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 39,
-    title: 'Jewelry',
-    subtitle: 'Product Design · 2023',
-    tags: ['3D', '2023'],
-    bg: 'linear-gradient(160deg, #344021, #252618)',
-    accent: '#C4A825',
-    description: '3D modeled and rendered jewelry collection for a luxury brand lookbook — gold and pearl material studies.',
-    tech: ['Blender', 'Keyshot'],
-    image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 40,
-    title: 'Sport Brand',
-    subtitle: 'Identity Design · 2024',
-    tags: ['Branding', '2024'],
-    bg: 'linear-gradient(160deg, #252618, #344021)',
-    accent: '#8B7B1A',
-    description: 'Brand identity for an independent sportswear label targeting urban athletes — bold, kinetic, minimal.',
-    tech: ['Illustrator', 'Figma'],
-    image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 41,
-    title: 'Protest Poster',
-    subtitle: 'Activist Design · 2022',
-    tags: ['Print', '2022'],
-    bg: 'linear-gradient(160deg, #1e280f, #1a1e0e)',
-    accent: '#D4A820',
-    description: 'Series of protest posters for a climate organization — screen-printed in two colors for mass distribution.',
-    tech: ['Illustrator', 'Photoshop'],
-    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 42,
-    title: 'Skincare Brand',
-    subtitle: 'Identity Design· 2024',
-
-    tags: ['Branding', '2024'],
-    bg: 'linear-gradient(160deg, #2d3a1a, #344021)',
-    accent: '#A68F1F',
-    description: 'Minimalist brand identity and packaging for a men\'s skincare line — matte black with embossed gold detail.',
-    tech: ['Illustrator', 'Dimension', 'Figma'],
-    image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 43,
-    title: 'Street Photo',
-    subtitle: 'Photography · 2023',
-    tags: ['Art Direction', '2023'],
-    bg: 'linear-gradient(160deg, #1a1e0e, #252618)',
-    accent: '#8A9A5B',
-    description: 'Street photography series shot across Tokyo and Seoul — black and white, available light only.',
-    tech: ['Lightroom', 'Capture One'],
-    image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 44,
-    title: 'Game UI',
-    subtitle: 'Interface Design · 2023',
-    tags: ['UI/UX', '2023'],
-    bg: 'linear-gradient(160deg, #344021, #1e280f)',
-    accent: '#C4A825',
-    description: 'HUD and menu system design for an indie strategy game — dark fantasy aesthetic with clear readability.',
-    tech: ['Figma', 'Photoshop', 'Unity'],
-    image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 45,
-    title: 'Restaurant Menu',
-    subtitle: 'Print Design · 2022',
-    tags: ['Print', '2022'],
-    bg: 'linear-gradint(160deg, #252618, #1a1e0e)',
-
-    accent: '#A68F1F',
-    description: 'Menu design and full print suite for a fine dining restaurant — letterpress on uncoated cotton stock.',
-    tech: ['InDesign', 'Illustrator'],
-    image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 46,
-    title: 'Brutalist Web',
-    subtitle: 'Web Design · 2024',
-    tags: ['UI/UX', '2024'],
-    bg: 'linear-gradient(160deg, #1e280f, #2d3a1a)',
-    accent: '#8B7B1A',
-    description: 'An intentionally raw, brutalist website for an underground art collective — anti-grid, high contrast.',
-    tech: ['Figma', 'React'],
-    image: 'https://images.unsplash.com/photo-1545665277-5937489579f2?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 47,
-    title: 'Pet Brand',
-    subtitle: 'Identity Design · 2023',
-    tags: ['Branding', '2023'],
-    bg: 'linear-gradient(160deg, #344021, #1a1e0e)',
-    accent: '#D4A820',
-    description: 'Playful yet premium brand identity for an organic pet food company — illustration-led with bold colors.',
-    tech: ['Procreate', 'Illustrator', 'Figma'],
-    image: 'https://images.unsplash.com/photo-1601758228041-f3b2795255f1?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 48,
-    title: 'Chair Design',
-    subtitle: '3D Concept · 2023',
-    tags: ['3D', '2023'],
-    bg: 'linear-gradient(160deg, #1a1e0e, #344021)',
-    accent: '#A68F1F',
-    description: 'Concept furniture design and photorealistic render for a modernist lounge chair — walnut and linen.',
-    tech: ['Blender', 'Substance Painter', 'Keyshot'],
-    image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 49,
-    title: 'Music Video',
-    subtitle: 'Direction · 2024',
-    tags: ['Motion', '2024'],
-    bg: 'linear-gradient(160deg, #252618, #344021)',
-    accent: '#8A9A5B',
-    description: 'Art direction and post-production for a lo-fi hip hop music video — Super 8 aesthetic with digital compositing.',
-    tech: ['Premiere Pro', 'After Effects', 'DaVinci Resolve'],
-    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 50,
-    title: 'Crypto Brand',
-    subtitle: 'Identity Design · 2022',
-    tags: ['Branding', '2022'],
-    bg: 'linear-gradient(160deg, #1e280f, #252618)',
-    accent: '#C4A825',
-    description: 'Brand identity for a DeFi protocol — geometric mark, monospace type system, and dark UI guidelines.',
-    tech: ['Figma', 'Illustrator', 'After Effects'],
-    image: 'https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 51,
-    title: 'Watch Design',
-    subtitle: '3D Render · 2024',
-    tags: ['3D', '2024'],
-    bg: 'linear-gradient(160deg, #344021, #1e280f)',
-    accent: '#8B7B1A',
-    description: 'Photorealistic watch renders for a luxury campaign — dial details, reflections, and gem material studies.',
-    tech: ['Blender', 'Keyshot', 'Photoshop'],
-    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 52,
-    title: 'Graffiti',
-    subtitle: 'Street Art · 2022',
-    tags: ['Art Direction', '2022'],
-    bg: 'linear-gradient(160deg, #1a1e0e, #1e280f)',
-    accent: '#D4A820',
-    description: 'Digital exploration of graffiti letterforms — letter studies and full-wall compositions in Procreate.',
-    tech: ['Procreate', 'Photoshop'],
-    image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 53,
-    title: 'Sci-Fi UI',
-    subtitle: 'Concept Design · 2023',
-    tags: ['UI/UX', '2023'],
-    bg: 'linear-gradient(160deg, #252618, #1e280f)',
-    accent: '#A68F1F',
-    description: 'Fictional interface design for a sci-fi short film — holographic HUD panels with motion-ready assets.',
-    tech: ['After Effects', 'Figma', 'Cinema 4D'],
-    image: 'https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 54,
-    title: 'Tech Startup',
-    subtitle: 'Identity Design · 2024',
-    tags: ['Branding', '2024'],
-    bg: 'linear-gradient(160deg, #344021, #2d3a1a)',
-    accent: '#8A9A5B',
-    description: 'Brand identity for a B2B SaaS startup — clean, trustworthy, with a sharp geometric logomark.',
-    tech: ['Figma', 'Illustrator'],
-    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 55,
-    title: 'Nature Series',
-    subtitle: 'Photography · 2022',
-    tags: ['Art Direction', '2022'],
-    bg: 'linear-gradient(160deg, #1e280f, #344021)',
-    accent: '#C4A825',
-    description: 'Macro and landscape photography series exploring texture and form in natural environments.',
-    tech: ['Lightroom', 'Photoshop'],
-    image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=800&auto=format&fit=crop',
   },
 ];
 
@@ -766,8 +303,172 @@ function CollapseButton({ onClick }) {
   );
 }
 
+function GalleryGrid({ images = [], onImageClick }) {
+  const isMobile = useMediaQuery('(max-width: 767px)');
+  const maxSlots = isMobile ? 3 : 10;
+  const visibleImages = images.slice(0, maxSlots);
+  const overflow = images.length - maxSlots;
+
+  return (
+    <div style={{
+      display: 'grid',
+      gridTemplateColumns: isMobile ? 'repeat(3, 1fr)' : 'repeat(5, 1fr)',
+      gap: '6px',
+      maxWidth: '500px',
+    }}>
+      {visibleImages.map((src, i) => {
+        const isLastSlot = i === maxSlots - 1;
+        const showOverlay = isLastSlot && overflow > 0;
+
+        return (
+          <div
+            key={i}
+            onClick={() => onImageClick(i)}
+            style={{
+              position: 'relative',
+              aspectRatio: '1 / 1',
+              borderRadius: '6px',
+              overflow: 'hidden',
+              cursor: 'pointer',
+            }}
+          >
+            <img
+              src={src}
+              alt=""
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            />
+
+            {showOverlay && (
+              <div style={{
+                position: 'absolute',
+                inset: 0,
+                background: 'rgba(0,0,0,0.7)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'white',
+                fontSize: '1.5rem',
+                fontWeight: 700,
+              }}>
+                +{overflow + 1}
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function Lightbox({ images, startIndex, onClose }) {
+  const [currentIndex, setCurrentIndex] = useState(startIndex);
+
+  const goNext = () => setCurrentIndex(i => (i + 1) % images.length);
+  const goPrev = () => setCurrentIndex(i => (i - 1 + images.length) % images.length);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={onClose}
+      style={{
+        position: 'fixed',
+        inset: 0,
+        zIndex: 100,
+        background: 'rgba(0,0,0,0.92)',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '5rem',
+      }}
+    >
+      {/* Image with drag */}
+      <motion.img
+        src={images[currentIndex]}
+        alt=""
+        drag="x"
+        dragConstraints={{ left: 0, right: 0 }}
+        dragElastic={0.2}
+        onDragEnd={(e, info) => {
+          if (info.offset.x < -50) goNext();
+          else if (info.offset.x > 50) goPrev();
+        }}
+        onClick={e => e.stopPropagation()}
+        style={{
+          maxWidth: '90vw',
+          maxHeight: '80vh',
+          objectFit: 'contain',
+          borderRadius: '8px',
+          cursor: 'grab',
+        }}
+      />
+
+      {/* Dots */}
+      <div
+        onClick={e => e.stopPropagation()}
+        style={{ display: 'flex', gap: '6px', alignItems: 'center' }}
+        className='absolute bottom-5'
+      >
+        {images.map((_, i) => (
+          <div
+            key={i}
+            style={{
+              height: '6px',
+              borderRadius: '999px',
+              background: i === currentIndex ? '#A68F1F' : 'rgba(242,230,223,0.2)',
+              width: i === currentIndex ? '20px' : '6px',
+              transition: 'all 0.3s ease',
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Prev */}
+      <button
+        onClick={e => { e.stopPropagation(); goPrev(); }}
+        style={{
+          position: 'fixed', left: '2rem', top: '50%', transform: 'translateY(-50%)',
+          background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '50%',
+          width: '48px', height: '48px', cursor: 'pointer', color: 'white', fontSize: '1.2rem',
+        }}
+      >
+        ←
+      </button>
+
+      {/* Next */}
+      <button
+        onClick={e => { e.stopPropagation(); goNext(); }}
+        style={{
+          position: 'fixed', right: '2rem', top: '50%', transform: 'translateY(-50%)',
+          background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '50%',
+          width: '48px', height: '48px', cursor: 'pointer', color: 'white', fontSize: '1.2rem',
+        }}
+      >
+        →
+      </button>
+
+      {/* Close */}
+      <button
+        onClick={onClose}
+        style={{
+          position: 'fixed', top: '2rem', right: '2rem',
+          background: 'none', border: 'none', color: 'white',
+          fontSize: '1.5rem', cursor: 'pointer',
+        }}
+      >
+        ✕
+      </button>
+    </motion.div>
+  );
+}
+
 // ─── Project Detail Page ─────────────────────────────────────────────────────
 function ProjectPage({ project, onClose }) {
+  const [lightboxIndex, setLightboxIndex] = useState(null);
+  const isMobile = useMediaQuery('(max-width: 767px)');
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -788,9 +489,16 @@ function ProjectPage({ project, onClose }) {
 
       {/* Hero Banner */}
       <div
+        className="absolute w-full flex items-center z-10 justify-center select-none h-[60vh] bg-black/50"
+      ></div>
+      <div
         className="relative w-full flex items-center justify-center select-none h-[60vh]"
         style={{
-          background: project.bg,
+          backgroundImage: project.img
+              ? `url(${project.img})`
+              : project.bg,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
         }}
       >
         {/* Radial glow */}
@@ -826,7 +534,6 @@ function ProjectPage({ project, onClose }) {
             {project.title}
           </motion.h1>
 
-          {/* Tags moved to Hero */}
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -836,7 +543,7 @@ function ProjectPage({ project, onClose }) {
             {project.tags.map((t) => (
               <span
                 key={t}
-                className="font-sans-body text-xs rounded-full inline-block"
+                className="font-sans-body text-xs rounded-full inline-block z-20"
                 style={{
                   padding: '0.5rem 1.25rem',
                   background: `${project.accent}15`,
@@ -852,9 +559,10 @@ function ProjectPage({ project, onClose }) {
 
       {/* Content */}
       <div
-        className="flex-col md:flex-row select-none"
+        className="select-none"
         style={{
           display: 'flex',
+          flexDirection: isMobile ? 'column' :'row',
           maxWidth: '90vw',
           margin: '0 auto',
           padding: '2rem 2rem 8rem 2rem',
@@ -914,40 +622,31 @@ function ProjectPage({ project, onClose }) {
             </div>
           </motion.div>
         </div>
-
-        {/* Right Column: CTAs */}
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.7 }}
-          className="flex-col md:flex-row"
-          style={{ height: '100%', maxHeight: '400px', display: 'flex', gap: '1.25rem', paddingTop: '10.5rem' }}
-        >
-          <HoverFillButton
-            inverted
-            className="w-full md:w-[200px]"
-            style={{
-              padding: '1rem 2rem',
-              color: project.accent,
-              border: `1px solid ${project.accent}`,
-            }}
-          >
-            Live Demo <ExternalLink size={16} />
-          </HoverFillButton>
-
-          <HoverFillButton
-            className="w-full md:w-[200px]"
-            style={{
-              padding: '1rem 2rem',
-              color: project.accent,
-              background: 'transparent',
-              border: `1px solid rgba(242,230,223,0.1)`,
-            }}
-          >
-            Case Study
-          </HoverFillButton>
-        </motion.div>
+        {/* Right Column: Gallery */}
+          {project.gallery?.length > 0 && (
+            <div style={{ flex: 1 }}>
+              <h3
+                className="font-display text-lg text-cream"
+                style={{ marginBottom: '1rem' }}
+              >
+                GALLERY
+              </h3>
+              <GalleryGrid
+                images={project.gallery}
+                onImageClick={(i) => setLightboxIndex(i)}
+              />
+            </div>
+          )}
       </div>
+      <AnimatePresence>
+        {lightboxIndex !== null && (
+          <Lightbox
+            images={project.gallery}
+            startIndex={lightboxIndex}
+            onClose={() => setLightboxIndex(null)}
+          />
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
@@ -1029,7 +728,11 @@ function MobileSelectedWork({ onProjectClick }) {
             transition={{ duration: 0.4, ease: [0.33, 1, 0.68, 1] }}
             className="absolute inset-0 flex flex-col justify-between cursor-pointer"
             style={{
-              background: activeWork.bg,
+              backgroundImage: activeWork.img
+              ? `url(${activeWork.img})`
+              : activeWork.bg,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
               borderRadius: '1.25rem',
               padding: 'clamp(1.25rem, 4vw, 2rem)',
             }}
@@ -1051,7 +754,7 @@ function MobileSelectedWork({ onProjectClick }) {
                 style={{
                   fontSize: 'clamp(2.5rem, 12vw, 5rem)',
                   lineHeight: 1,
-                  color: `${activeWork.accent}30`,
+                  color: `${activeWork.accent}60`,
                   letterSpacing: '-0.02em',
                 }}
               >
@@ -1060,43 +763,13 @@ function MobileSelectedWork({ onProjectClick }) {
             </div>
 
             {/* Bottom-left: Title, subtitle, tags */}
-            <div className="relative z-10 flex flex-col gap-2">
-              <div className="flex gap-2 flex-wrap">
-                {activeWork.tags.map((t) => (
-                  <span
-                    key={t}
-                    className="font-sans-body text-xs rounded-full"
-                    style={{
-                      padding: '0.25rem 0.75rem',
-                      background: `${activeWork.accent}18`,
-                      color: activeWork.accent,
-                    }}
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-              <h3
-                className="font-display text-cream"
-                style={{
-                  fontSize: 'clamp(2rem, 10vw, 4rem)',
-                  letterSpacing: '-0.02em',
-                  lineHeight: 0.95,
-                }}
-              >
-                {activeWork.title}
-              </h3>
+            <div className="relative z-10 flex justify-end">
               <div className="flex items-center gap-4" style={{ paddingTop: '0.25rem' }}>
-                <p
-                  className="font-sans-body text-xs text-cream opacity-50"
-                >
-                  {activeWork.subtitle}
-                </p>
                 <span
-                  className="font-sans-body text-xs tracking-wider uppercase"
-                  style={{ color: activeWork.accent }}
+                  className="font-sans-body text-xs tracking-wider uppercase bg-bg/80 rounded-full"
+                  style={{ color: activeWork.accent, paddingTop: '0.5rem', paddingBottom: '0.5rem', paddingLeft: '1rem', paddingRight: '1rem' }}
                 >
-                  View →
+                  Learn More →
                 </span>
               </div>
             </div>
@@ -1131,6 +804,7 @@ function MobileSelectedWork({ onProjectClick }) {
 function SelectedWorkDesktop({ onProjectClick }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(1);
+  const [isHovering, setIsHovering] = useState(false)
   const activeWork = WORKS[activeIndex];
   const containerRef = useRef(null);
 
@@ -1193,6 +867,8 @@ function SelectedWorkDesktop({ onProjectClick }) {
           background: 'rgba(26,30,14,0.6)',
           border: `1px solid ${activeWork.accent}44`,
         }}
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => setIsHovering(false)}
       >
         <AnimatePresence initial={false} custom={direction} mode="sync">
           <motion.div
@@ -1206,7 +882,11 @@ function SelectedWorkDesktop({ onProjectClick }) {
             className="absolute flex flex-col justify-end cursor-pointer"
             style={{
               top: '6px', bottom: '6px', left: '6px', right: '6px',
-              background: activeWork.bg,
+              backgroundImage: activeWork.img
+              ? `url(${activeWork.img})`
+              : activeWork.bg,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
               borderRadius: '0.875rem',
               padding: 'clamp(1.5rem, 4vw, 3rem)',
             }}
@@ -1222,13 +902,18 @@ function SelectedWorkDesktop({ onProjectClick }) {
             />
 
             {/* Bottom-left content */}
-            <div className="relative z-10 flex flex-col gap-3" style={{ maxWidth: '65%' }}>
+            <motion.div 
+              initial={{ y:0, opacity: 0}}
+              animate={{y: isHovering ? 100 : 0, opacity: isHovering ? 0 : 100 }}
+              transition={{ delay: 0.5, duration: 0.5, type: 'spring', ease: 'anticipate'}}
+              className="relative z-10 flex flex-col gap-3" 
+              style={{ maxWidth: '65%' }}>
               <div className="flex gap-2 flex-wrap">
                 {activeWork.tags.map((t) => (
                   <span
                     key={t}
-                    className="font-sans-body text-xs rounded-full"
-                    style={{ padding: '0.3rem 0.9rem', background: `${activeWork.accent}18`, color: activeWork.accent }}
+                    className="font-sans-body text-xs rounded-full bg-bg/60"
+                    style={{ padding: '0.3rem 0.9rem', color: activeWork.accent }}
                   >
                     {t}
                   </span>
@@ -1236,18 +921,19 @@ function SelectedWorkDesktop({ onProjectClick }) {
               </div>
 
               <h3
-                className="font-display text-cream"
+                className="font-display"
                 style={{
                   fontSize: 'clamp(3rem, 8vw, 7rem)',
                   letterSpacing: '-0.02em',
                   lineHeight: 0.9,
+                  color: activeWork.titleAccent
                 }}
               >
                 {activeWork.title}
               </h3>
 
-              <div className="flex items-center gap-6" style={{ paddingTop: '0.5rem' }}>
-                <p className="font-sans-body text-sm text-cream opacity-50">
+              <div className="flex items-center gap-6 w-fit bg-bg/60 rounded-full" style={{ padding: '0.5rem', color: activeWork.accent }}>
+                <p className="font-sans-body text-sm">
                   {activeWork.subtitle}
                 </p>
 
@@ -1258,7 +944,7 @@ function SelectedWorkDesktop({ onProjectClick }) {
                   View →
                 </span>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         </AnimatePresence>
       </div>
@@ -1277,7 +963,7 @@ function SelectedWork({ onProjectClick }) {
 }
 
 // ─── Archive Grid ────────────────────────────────────────────────────────────
-function ArchiveGrid({ scrollAnchor, onProjectClick }) {
+function ArchiveGrid({ scrollAnchor }) {
   const [visibleCount, setVisibleCount] = useState(4);
   const [showStickyCollapse, setShowStickyCollapse] = useState(false);
   const [columns, setColumns] = useState([[], [], []]);
@@ -1362,7 +1048,6 @@ function ArchiveGrid({ scrollAnchor, onProjectClick }) {
       transition={{ duration: 0.4, ease: [0.33, 1, 0.68, 1] }}
       className="group relative overflow-hidden rounded-lg bg-[#1a1e0e]"
       style={{ cursor: 'pointer', border: '1px solid rgba(166,143,31,0.10)', marginBottom: '12px' }}
-      onClick={() => onProjectClick && onProjectClick(p)}
     >
       <div className="relative w-full overflow-hidden block">
         {p.image ? (
@@ -1392,17 +1077,6 @@ function ArchiveGrid({ scrollAnchor, onProjectClick }) {
           <p className="font-sans-body text-xs tracking-widest uppercase opacity-90 drop-shadow-lg" style={{ color: p.accent || '#A68F1F' }}>
             {p.subtitle}
           </p>
-
-          <div className="flex gap-2 mt-2">
-            {p.tags.map((t) => (
-              <span
-                key={t}
-                className="font-sans-body text-cream text-[10px] uppercase tracking-wider bg-black/40 border border-white/10 px-2 py-1 rounded-full backdrop-blur-sm"
-              >
-                {t}
-              </span>
-            ))}
-          </div>
         </div>
       </div>
     </motion.div>
