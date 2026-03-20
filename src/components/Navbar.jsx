@@ -182,6 +182,20 @@ export default function Navbar({ scrollTo }) {
     return () => mq.removeEventListener('change', handler);
   }, []);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+    const handler = () => setMenuOpen(false);
+    document.addEventListener('pointerdown', handler);
+    return () => document.removeEventListener('pointerdown', handler);
+  }, [menuOpen]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const handler = () => setMenuOpen(false);
+    window.addEventListener('scroll', handler, { passive: true });
+    return () => window.removeEventListener('scroll', handler);
+  }, [menuOpen]);
+
   return (
     <div className="w-full flex items-center justify-center">
       <motion.header
@@ -215,6 +229,7 @@ export default function Navbar({ scrollTo }) {
               border: '1px solid rgba(115,92,25,0.55)',
               position: 'relative',
               boxSizing: 'border-box',
+              transition: isExpanded ? 'padding 0s 0.15s' : 'padding 0s',
               paddingLeft: isExpanded ? '2rem' : '0rem',   // instant swap is fine, hidden by the width animation
               paddingRight: isExpanded ? '2rem' : '0rem',
             }}
@@ -323,7 +338,7 @@ export default function Navbar({ scrollTo }) {
                               translateY: '-50%',
                               height: '26px',
                               borderRadius: '999px',
-                              background: 'transparent',
+                              background: '#00000050',
                               border: '1px solid rgb(166, 143, 31)',
                               paddingLeft: '12px',
                               paddingRight: '12px',
@@ -466,6 +481,7 @@ export default function Navbar({ scrollTo }) {
                     <button
                       className="md:hidden shrink-0 text-cream"
                       style={{ paddingRight: '1rem' }}
+                      onPointerDown={(e) => e.stopPropagation()}
                       onClick={() => setMenuOpen((v) => !v)}
                       aria-label="Toggle menu"
                     >
