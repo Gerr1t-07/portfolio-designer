@@ -167,7 +167,7 @@ export default function About() {
           >
             Located in Germany, I create visual identities, graphics, and photo-realistic<br />3D assets. I work with start-ups, artists, and anyone who needs a visual presence that actually means something.<br/><br/>
             My work is driven by emotion and atmosphere. Every project has a concept behind it, and execution that reflects it. Whether that's a brand identity<br />built from scratch, a poster that stops someone mid-scroll, or a<br />3D render with the weight of a real object.<br/><br/>
-            I'm young, focused, and constantly pushing the work forward.<br />There's no project too early-stage or too ambitious."
+            I'm young, focused, and constantly pushing the work forward.<br />There's no project too early-stage or too ambitious.
           </p>
 
           <div className="flex items-end justify-end md:justify-start gap-4 ml-auto h-12 md:h-16">

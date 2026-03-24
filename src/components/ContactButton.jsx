@@ -172,7 +172,7 @@ export default function ContactButton({className, text = "", firstIcon, lastIcon
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 120 }}
               transition={{ duration: 0.4 }}
-              className="w-full max-w-[40vw] h-fit bg-bg border border-white/10 rounded-xl overflow-hidden"
+              className="w-full max-w-[80vw] md:max-w-[40vw] h-fit bg-bg border border-white/10 rounded-xl overflow-hidden"
             >
               {/* Header */}
               <div className="flex justify-end" style={{paddingTop: '2rem', paddingRight:'2rem'}}>
@@ -186,7 +186,7 @@ export default function ContactButton({className, text = "", firstIcon, lastIcon
               </div>
               <div className="flex items-start justify-center select-none">
                 <div>
-                  <h2 className="text-3xl font-display text-white text-center tracking-tight" style={{ marginTop: '0.5rem', marginBottom: '2rem'}}>Let's work <span className="text-gold">together.</span></h2>
+                  <h2 className="text-xl md:text-3xl font-display text-white text-center tracking-tight" style={{ marginTop: '0.5rem', marginBottom: '2rem'}}>Let's work <span className="text-gold">together.</span></h2>
                 </div>
               </div>
                 
@@ -278,7 +278,7 @@ export default function ContactButton({className, text = "", firstIcon, lastIcon
                 </div>
 
                 {/* CTA */}
-                <p className="text-[0.5rem] text-white/20 uppercase tracking-wider" style={{ paddingTop: '2rem'}}>clicking send will redirect you to your mail app of choice.</p>
+                <p className="text-[0.4rem] md:text-[0.5rem] text-white/20 uppercase tracking-wider" style={{ paddingTop: '2rem'}}>clicking send will redirect you to your standard mail app.</p>
                 <div className="grid grid-cols-2 gap-2" style={{ paddingBottom: '2rem', paddingTop: '0.5rem'}}>
                 <HoverFillButton
                   onClick={closeModal}
