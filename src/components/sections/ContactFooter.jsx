@@ -1,12 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Mail } from 'lucide-react';
-import TikTok from '@/assets/icons/TikTok Icon.svg?react';
-import Instagram from '@/assets/icons/Instagram Icon.svg?react';
-import Dribbble from '@/assets/icons/Dribbble Icon.svg?react';
-import Fiverr from '@/assets/icons/Fiverr Icons.svg?react';
-import Twitter from '@/assets/icons/X Icons.svg?react';
-import LinkedIn from '@/assets/icons/LinkedIn Icon.svg?react';
+import TikTok from '@/assets/icons/TikTok-Icon.svg?react';
+import Instagram from '@/assets/icons/Instagram-Icon.svg?react';
+import Dribbble from '@/assets/icons/Dribbble-Icon.svg?react';
+import Fiverr from '@/assets/icons/Fiverr-Icons.svg?react';
+import Twitter from '@/assets/icons/X-Icons.svg?react';
+import LinkedIn from '@/assets/icons/LinkedIn-Icon.svg?react';
 import ContactButton from '../ContactButton';
 
 
