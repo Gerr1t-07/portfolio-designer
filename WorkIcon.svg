@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 842 842" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-356.166667,-622.166667)">
+        <g id="WorkIcon">
+            <g transform="matrix(1.005025,0,0,0.828144,-366.718593,356.474471)">
+                <path d="M1444.46,509C1468.738,509 1492.021,520.704 1509.189,541.538C1526.356,562.372 1536,590.628 1536,620.092L1536,1200.908C1536,1230.372 1526.356,1258.628 1509.189,1279.462C1492.021,1300.296 1468.738,1312 1444.46,1312L831.54,1312C807.262,1312 783.979,1300.296 766.811,1279.462C749.644,1258.628 740,1230.372 740,1200.908L740,620.092C740,590.628 749.644,562.372 766.811,541.538C783.979,520.704 807.262,509 831.54,509L1444.46,509Z" style="fill:none;stroke:white;stroke-width:45.25px;"/>
+            </g>
+            <g transform="matrix(1,0,0,1,-1,49)">
+                <path d="M883.249,594C901.218,594 918.451,601.138 931.156,613.844C943.862,626.549 951,643.782 951,661.751L951,729L605,729L605,661.751C605,643.782 612.138,626.549 624.844,613.844C637.549,601.138 654.782,594 672.751,594L883.249,594Z" style="fill:none;stroke:white;stroke-width:41.67px;"/>
+            </g>
+        </g>
+    </g>
+</svg>
