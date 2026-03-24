@@ -1,12 +1,71 @@
-import React, { useRef, useState, useEffect, useCallback } from 'react';
+import React, { useRef, useState, useEffect, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motion';
 import { ArrowLeft, ChevronDown } from 'lucide-react';
 import BleedText from '../BleedText';
+import mjm01 from '@/assets/works/App v0.0_Feed.png'
+import mjm02 from '@/assets/works/App v0.0_Loading Screen_Launch_.png'
+import mjm03 from '@/assets/works/App v0.0_Loading Screen_Style_.png'
+import mjm04 from '@/assets/works/MJM_Icons.png'
+import mjm05 from '@/assets/works/MJM_Logo.png'
+import mjm06 from '@/assets/works/MJM_IG_Mockup.png'
+import mjm07 from '@/assets/works/MJM.png'
+import mjm08 from '@/assets/works/MJM_08.png'
+import mjm09 from '@/assets/works/MJM_09.png'
+import oe01 from '@/assets/works/Oak&Ember_01.png'
+import oe02 from'@/assets/works/Oak&Ember_02.png'
+import oe03 from'@/assets/works/Oak&Ember_03.png'
 import dodgeImg from '@/assets/works/Dodge_Poster.png'
 import mjmBranding from '@/assets/works/MJM_BrandingBoard.png'
 import embersBranding from '@/assets/works/Oak&Embers_BrandingBoard.png'
 import rdr2Poster from '@/assets/works/RDR2_Poster.png'
 import jokerPoster from '@/assets/works/Joker_Poster.png'
+import albumCover01Img from '@/assets/works/AlbumCover_01.webp'
+import albumCover02Img from '@/assets/works/AlbumCover_02.webp'
+import albumCover03Img from '@/assets/works/AlbumCover_03.webp'
+import bleachImg from '@/assets/works/Bleach.webp'
+import bondingImg from '@/assets/works/Bonding.webp'
+import brabus700Img from '@/assets/works/BRABUS 700.webp'
+import breakingBadImg from '@/assets/works/Breaking Bad.webp'
+import dontLeaveYetImg from "@/assets/works/Don't Leave Yet.webp"
+import eminemImg from '@/assets/works/Eminem.webp'
+import exileImg from '@/assets/works/Exile.webp'
+import festiveImg from '@/assets/works/Festive.webp'
+import fingerImg from '@/assets/works/Finger.webp'
+import flowlyWebdesignImg from '@/assets/works/Flowly_Webdesign.webp'
+import forestImg from '@/assets/works/Forest.webp'
+import frequencyImg from '@/assets/works/Frequency.webp'
+import haltonImg from '@/assets/works/HALTON.webp'
+import hangWithMeImg from '@/assets/works/Hang_with_Me.webp'
+import jjkImg from '@/assets/works/JJK.webp'
+import jokerImg from '@/assets/works/Joker.webp'
+import lakeKawaguchiImg from '@/assets/works/Lake Kawaguchi.webp'
+import leBeauImg from '@/assets/works/Le_Beau.webp'
+import mechanismImg from '@/assets/works/Mechanism.webp'
+import myslfImg from '@/assets/works/MYSLF.webp'
+import narutoImg from '@/assets/works/Naruto.webp'
+import onePiece2Img from '@/assets/works/One Piece 2.webp'
+import onePieceImg from '@/assets/works/One Piece.webp'
+import posterCharityImg from '@/assets/works/Poster|Charity.webp'
+import posterEnvyImg from '@/assets/works/Poster|Envy.webp'
+import posterFaithImg from '@/assets/works/Poster|Faith.webp'
+import posterFortitudeImg from '@/assets/works/Poster|Fortitude.webp'
+import posterGluttonyImg from '@/assets/works/Poster|Gluttony.webp'
+import posterGreedImg from '@/assets/works/Poster|Greed.webp'
+import posterHopeImg from '@/assets/works/Poster|Hope.webp'
+import posterJusticeImg from '@/assets/works/Poster|Justice.webp'
+import posterLustImg from '@/assets/works/Poster|Lust.webp'
+import posterPrideImg from '@/assets/works/Poster|Pride.webp'
+import posterPrudenceImg from '@/assets/works/Poster|Prudence.webp'
+import posterSlothImg from '@/assets/works/Poster|Sloth.webp'
+import posterTemperanceImg from '@/assets/works/Poster|Temperance.webp'
+import posterWrathImg from '@/assets/works/Poster|Wrath.webp'
+import rdr2Img from '@/assets/works/RDR2.webp'
+import sufferingImg from '@/assets/works/Suffering.webp'
+import theIronSaintImg from '@/assets/works/The_Iron_Saint.webp'
+import themoonbakeImg from '@/assets/works/THEMOONBAKE.webp'
+import wisdomImg from '@/assets/works/Wisdom.webp'
+import withdrawalImg from '@/assets/works/Withdrawal.webp'
+import dodgePoster from '@/assets/works/Dodge.webp'
 
 // ─── Project data ─────────────────────────────────────────────────────────────
 const WORKS = [
@@ -20,7 +79,7 @@ const WORKS = [
     description: 'A full brand creation based on a hypothetical client who wants to revamp the fashion industry with an app that helps people find and define their style by simply swiping through a feed.',
     tech: [ 'Affinity', 'Figma', 'Mockup-Designs.com', 'Nano Banana Pro', 'ChatGPT' ],
     img: mjmBranding,
-    gallery: [ mjmBranding, jokerPoster, mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding ],
+    gallery: [ mjm01, mjm02, mjm03, mjm04, mjm05, mjm06, mjm07, mjm08, mjm09 ],
     titleAccent: '#2a2a2a',
   },
   {
@@ -33,7 +92,7 @@ const WORKS = [
     description: 'An immersive digital experience that blends cutting-edge WebGL technology with thoughtful UX design. The project transforms complex data into beautiful, interactive 3D visualizations.',
     tech: [ 'Affinity', 'Figma', 'Mockup-Designs.com', 'Nano Banana Pro' ],
     img: embersBranding,
-    gallery: [ mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding ],
+    gallery: [ oe01, oe02, oe03, embersBranding ],
     titleAccent: '#5C3415'
   },
   {
@@ -46,7 +105,7 @@ const WORKS = [
     description: 'Definitely the best graphic design study so far, capturing not simply a "Poster of a game" but it holds the deepest scenes and aspects of the game Read Dead Redemption 2. This delivers emotional weight as well as visually pleasing aesthetics',
     tech: [ 'Affinity', 'Figma', 'Mockup-Designs.com', 'Nano Banana Pro' ],
     img: rdr2Poster,
-    gallery: [ mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding ],
+    gallery: [ rdr2Img, rdr2Poster ],
     titleAccent: '#FBA919'
   },
   {
@@ -59,7 +118,7 @@ const WORKS = [
     description: 'A graphic design study based on a golden ratio layout. This poster presents the fabulous movie "Joker" in a rough and textured way, as well as crediting the actor who played an awesome role: Joaquin Phoenix.',
     tech: ['Affinity', 'Figma', 'Mockup-Designs.com', 'google.com'],
     img: jokerPoster,
-    gallery: [ mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding ],
+    gallery: [ jokerImg, jokerPoster ],
     titleAccent: '#27841F'
   },
   {
@@ -72,82 +131,59 @@ const WORKS = [
     description: 'A bold yet minimal movie poster design, inspired by a hypothetical movie called "Dodge". The design process was fairly simple after generating a fitting background image was successful.',
     tech: [ 'Affinity', 'Figma', 'Mockup-Designs.com', 'Nano Banana Pro' ],
     img: dodgeImg,
-    gallery: [ mjmBranding, mjmBranding, mjmBranding, mjmBranding, mjmBranding ],
+    gallery: [ dodgePoster, dodgeImg ],
     titleAccent: '#ffffff',
   },
 ];
 
 const ARCHIVE = [
-  {
-    id: 6,
-    title: 'Posters',
-    subtitle: 'Graphic Design · 2024',
-    bg: 'linear-gradient(160deg, #344021, #252618)',
-    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 7,
-    title: 'Logos',
-    subtitle: 'Brand Identity · 2023',
-    bg: 'linear-gradient(160deg, #1a1e0e, #2d3a1a)',
-    image: 'https://images.unsplash.com/photo-1572044162444-ad60f128bdea?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 8,
-    title: '3D Models',
-    subtitle: 'Product Visualization · 2023',
-    bg: 'linear-gradient(160deg, #252618, #344021)',
-    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 9,
-    title: 'Editorial',
-    subtitle: 'Publication Design · 2022',
-    bg: 'linear-gradient(160deg, #1e280f, #344021)',
-    image: 'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 10,
-    title: 'Packaging',
-    subtitle: 'Physical Goods · 2023',
-    bg: 'linear-gradient(160deg, #2a3510, #1e280f)',
-    image: 'https://images.unsplash.com/photo-1554774853-aae0a22c8aa4?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 11,
-    title: 'Exhibition',
-    subtitle: 'Spatial Design · 2022',
-    bg: 'linear-gradient(160deg, #1e280f, #252618)',
-    image: 'https://images.unsplash.com/photo-1518998053901-5348d3961a04?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 12,
-    title: 'Typeface',
-    subtitle: 'Type Design · 2024',
-    bg: 'linear-gradient(160deg, #344021, #1a1e0e)',
-    image: 'https://images.unsplash.com/photo-1524234107056-1c1f48f64ab8?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 13,
-    title: 'Motion Reel',
-    subtitle: 'Motion Graphics · 2023',
-    bg: 'linear-gradient(160deg, #252618, #1e280f)',
-    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 14,
-    title: 'App UI',
-    subtitle: 'Interface Design · 2024',
-    bg: 'linear-gradient(160deg, #1a1e0e, #344021)',
-    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 15,
-    title: 'Merch',
-    subtitle: 'Product Design · 2023',
-    bg: 'linear-gradient(160deg, #344021, #252618)',
-    image: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=800&auto=format&fit=crop',
-  },
+  { id: 6, title: 'Still Processing', subtitle: 'Album Cover · 2025', bg: 'linear-gradient(160deg, #344021, #252618)', image: albumCover01Img },
+  { id: 7, title: 'Passing Signals', subtitle: 'Album Cover · 2025', bg: 'linear-gradient(160deg, #1a1e0e, #2d3a1a)', image: albumCover02Img },
+  { id: 8, title: 'Between Stations', subtitle: 'Album Cover · 2025', bg: 'linear-gradient(160deg, #252618, #344021)', image: albumCover03Img },
+  { id: 9, title: 'Bleach', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #1e280f, #344021)', image: bleachImg },
+  { id: 10, title: 'Bonding', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #2a3510, #1e280f)', image: bondingImg },
+  { id: 11, title: 'BRABUS 700', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #1e280f, #252618)', image: brabus700Img },
+  { id: 12, title: 'Breaking Bad', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #344021, #1a1e0e)', image: breakingBadImg },
+  { id: 13, title: 'Dodge', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #252618, #1e280f)', image: dodgeImg },
+  { id: 14, title: "Don't Leave Yet", subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #1a1e0e, #344021)', image: dontLeaveYetImg },
+  { id: 15, title: 'Eminem', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #344021, #252618)', image: eminemImg },
+  { id: 16, title: 'Exile', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #1e280f, #344021)', image: exileImg },
+  { id: 17, title: 'Festive', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #252618, #1a1e0e)', image: festiveImg },
+  { id: 18, title: 'Finger', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #344021, #1e280f)', image: fingerImg },
+  { id: 19, title: 'Flowly', subtitle: 'Webdesign · 2026', bg: 'linear-gradient(160deg, #1a1e0e, #252618)', image: flowlyWebdesignImg },
+  { id: 20, title: 'Forest', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #2d3a1a, #344021)', image: forestImg },
+  { id: 21, title: 'Frequency', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #252618, #344021)', image: frequencyImg },
+  { id: 22, title: 'HALTON', subtitle: 'Branding · 2025', bg: 'linear-gradient(160deg, #1e280f, #1a1e0e)', image: haltonImg },
+  { id: 23, title: 'Hang with Me', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #344021, #252618)', image: hangWithMeImg },
+  { id: 24, title: 'JJK', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #1a1e0e, #1e280f)', image: jjkImg },
+  { id: 25, title: 'Joker', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #252618, #2d3a1a)', image: jokerImg },
+  { id: 26, title: 'Lake Kawaguchi', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #1e280f, #344021)', image: lakeKawaguchiImg },
+  { id: 27, title: 'Le Beau', subtitle: 'Branding · 2025', bg: 'linear-gradient(160deg, #344021, #1a1e0e)', image: leBeauImg },
+  { id: 28, title: 'Mechanism', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #252618, #1e280f)', image: mechanismImg },
+  { id: 29, title: 'MYSLF', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #1a1e0e, #344021)', image: myslfImg },
+  { id: 30, title: 'Naruto', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #344021, #252618)', image: narutoImg },
+  { id: 31, title: 'One Piece Poster', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #1e280f, #2d3a1a)', image: onePiece2Img },
+  { id: 32, title: 'One Piece', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #252618, #344021)', image: onePieceImg },
+  { id: 33, title: 'Charity', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #1a1e0e, #1e280f)', image: posterCharityImg },
+  { id: 34, title: 'Envy', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #344021, #252618)', image: posterEnvyImg },
+  { id: 35, title: 'Faith', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #2d3a1a, #1a1e0e)', image: posterFaithImg },
+  { id: 36, title: 'Fortitude', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #1e280f, #344021)', image: posterFortitudeImg },
+  { id: 37, title: 'Gluttony', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #252618, #1e280f)', image: posterGluttonyImg },
+  { id: 38, title: 'Greed', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #344021, #1a1e0e)', image: posterGreedImg },
+  { id: 39, title: 'Hope', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #1a1e0e, #344021)', image: posterHopeImg },
+  { id: 40, title: 'Justice', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #252618, #2d3a1a)', image: posterJusticeImg },
+  { id: 41, title: 'Lust', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #1e280f, #252618)', image: posterLustImg },
+  { id: 42, title: 'Pride', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #344021, #1e280f)', image: posterPrideImg },
+  { id: 43, title: 'Prudence', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #1a1e0e, #252618)', image: posterPrudenceImg },
+  { id: 44, title: 'Sloth', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #2d3a1a, #344021)', image: posterSlothImg },
+  { id: 45, title: 'Temperance', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #252618, #1a1e0e)', image: posterTemperanceImg },
+  { id: 46, title: 'Wrath', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #344021, #252618)', image: posterWrathImg },
+  { id: 47, title: 'RDR2', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #1e280f, #1a1e0e)', image: rdr2Img },
+  { id: 48, title: 'Suffering', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #252618, #344021)', image: sufferingImg },
+  { id: 49, title: 'The Iron Saint', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #1a1e0e, #1e280f)', image: theIronSaintImg },
+  { id: 50, title: 'THEMOONBAKE', subtitle: 'Branding · 2025', bg: 'linear-gradient(160deg, #344021, #2d3a1a)', image: themoonbakeImg },
+  { id: 51, title: 'Wisdom', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #1e280f, #252618)', image: wisdomImg },
+  { id: 52, title: 'Withdrawal', subtitle: 'Poster Design · 2026', bg: 'linear-gradient(160deg, #252618, #1a1e0e)', image: withdrawalImg },
 ];
 
 // ─── useMediaQuery hook ───────────────────────────────────────────────────────
@@ -964,14 +1000,17 @@ function SelectedWork({ onProjectClick }) {
 
 // ─── Archive Grid ────────────────────────────────────────────────────────────
 function ArchiveGrid({ scrollAnchor }) {
-  const [visibleCount, setVisibleCount] = useState(4);
+  const shuffledArchive = useMemo(() => {
+    return [...ARCHIVE].sort(() => Math.random() - 0.5);
+  }, []);
+  const [visibleCount, setVisibleCount] = useState(6);
   const [showStickyCollapse, setShowStickyCollapse] = useState(false);
   const [columns, setColumns] = useState([[], [], []]);
 
   const gridContainerRef = useRef(null);
   const cardRefs = useRef({});
-  const isExpanded = visibleCount >= ARCHIVE.length;
-  const visibleItems = ARCHIVE.slice(0, visibleCount);
+  const isExpanded = visibleCount >= shuffledArchive.length;
+  const visibleItems = shuffledArchive.slice(0, visibleCount);
 
   // Run after every paint to re-balance columns based on actual rendered heights
 
@@ -984,7 +1023,7 @@ function ArchiveGrid({ scrollAnchor }) {
     const measure = () => {
       const heights = [0, 0, 0];
       const cols = [[], [], []];
-      ARCHIVE.slice(0, visibleCount).forEach((item) => {
+      shuffledArchive.slice(0, visibleCount).forEach((item) => {
         const el = cardRefs.current[item.id];
         if (!el) return;
         const shortest = heights.indexOf(Math.min(...heights));
@@ -1035,7 +1074,7 @@ function ArchiveGrid({ scrollAnchor }) {
         window.scrollTo({ top: y, behavior: 'smooth' });
       }, 1);
     } else {
-      setVisibleCount(ARCHIVE.length);
+      setVisibleCount(shuffledArchive.length);
     }
   };
 
@@ -1102,7 +1141,7 @@ function ArchiveGrid({ scrollAnchor }) {
           </div>
 
           <motion.div
-            className="absolute bottom-0 left-0 right-0 pointer-events-none z-50"
+            className="absolute bottom-0 left-0 right-0 pointer-events-none z-40"
             animate={{ opacity: isExpanded ? 0 : 1 }}
             transition={{ duration: 0.7 }}
             style={{

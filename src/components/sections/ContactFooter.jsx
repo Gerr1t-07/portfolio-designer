@@ -15,8 +15,8 @@ const SOCIALS = [
   { icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/gstudio026' },
   { icon: Dribbble, label: 'Dribbble', href: 'https://dribbble.com/sachergerrit' },
   { icon: Fiverr, label: 'Fiverr', href: 'https://de.fiverr.com/s/381GWRk' },
-  { icon: Twitter, label: 'X', href: 'x.com' },
-  { icon: LinkedIn, label: 'LinkedIn', href: 'linkedin.com' }
+  { icon: Twitter, label: 'X', href: 'https://x.com/sacher_design' },
+  { icon: LinkedIn, label: 'LinkedIn', href: 'www.linkedin.com/in/gerrit-sacher-29a4473b9' }
 ];
 
 export default function ContactFooter() {
