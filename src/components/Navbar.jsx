@@ -217,7 +217,7 @@ export default function Navbar({ scrollTo }) {
             className="glass-nav mt-5 flex items-center justify-between rounded-full pointer-events-auto overflow-visible"
             initial={false}
             animate={{
-              width: isExpanded ? '100%' : '120px',
+              width: isExpanded || menuOpen ? '100%' : '120px',
             }}
             transition={
               isExpanded
@@ -245,7 +245,7 @@ export default function Navbar({ scrollTo }) {
                             }}
               className="flex items-center justify-center p-1 shrink-0"
               animate={{
-                width: isExpanded ? 'auto' : '100%',
+                width: isExpanded || menuOpen ? 'auto' : '100%',
               }}
               transition={
                 isExpanded
